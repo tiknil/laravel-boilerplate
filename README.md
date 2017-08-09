@@ -11,7 +11,7 @@ Aggiunta definizione di errore generico e la configurazione dello Schema generic
 * [Guzzle HTTP](http://docs.guzzlephp.org/en/stable/)
 * [Bugsnag](https://docs.bugsnag.com/platforms/php/laravel/)
 * [Datatables](https://yajrabox.com/docs/laravel-datatables): sia modulo composer per il backend che js/css per il frontend.
-* [Json API](http://jsonapi.org/): impostato file `ApiBaseController` con metodi per parsare le richieste e wrappare le risposte comodamente. 
+* [Json API](http://jsonapi.org/): impostato file `ApiBaseController` con metodi per parsare le richieste e wrappare le risposte comodamente. Presente anche il file `ApiTestTrait` con metodi per testare comodamente le API basate su JSON API.
 * [AdminLTE](https://adminlte.io/): impostata view/sidebar di base, visibile all'url `/admin`.
 * Migliorato il log: diviso in file giorno per giorno e utente per utente
 
