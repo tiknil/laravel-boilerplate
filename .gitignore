@@ -1,0 +1,28 @@
+# External modules
+/vendor
+/node_modules
+
+# Application module
+/public/storage
+/public/build
+
+
+# IDE/Editor files
+.idea/*
+
+# Configuration files
+Homestead.yaml
+Homestead.json
+.env
+/.vagrant
+npm-debug.log
+
+# Files
+storage/logs
+storage/docs/api-docs.json
+/.idea
+
+# CSS - JS compiled files
+public/js/
+public/css/
+public/mix-manifest.json
