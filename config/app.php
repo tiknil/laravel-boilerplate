@@ -136,6 +136,10 @@ return [
     */
 
     'providers' => [
+        /*
+         * Swagger
+         */
+        Appointer\Swaggervel\SwaggervelServiceProvider::class,
 
         /*
          * Laravel Framework Service Providers...
