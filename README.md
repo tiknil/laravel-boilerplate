@@ -1,5 +1,5 @@
 # Laravel Boilerplate
- Boilerplate di laravel 5.4 con le configurazioni di base necessarie per il nostro utilizzo standard (server per un app con API e backend di amministrazione)
+ Boilerplate di laravel 5.4 con le configurazioni di base necessarie per il nostro utilizzo standard (server per un'app con API e backend di amministrazione)
 
 ## Pre-configurazioni effettuate
 All'installazione laravel di base, sono stati aggiunti e configurati:
