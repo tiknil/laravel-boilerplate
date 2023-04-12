@@ -1,0 +1,25 @@
+@import "bootstrap/scss/bootstrap.scss";
+
+// Altrimenti bisogna pubblicare i file del font ed è complesso
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+
+  &:hover {
+    color: inherit;
+
+    &:not(.btn) {
+      text-decoration: underline;
+    }
+  }
+}
+
+.pagination {
+  .page-item:not(.active) {
+    .page-link {
+      color: var(--bs-body-color);
+    }
+  }
+}

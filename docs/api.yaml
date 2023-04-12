@@ -1,0 +1,286 @@
+openapi: 3.0.3
+info:
+  title: LaravelBoilerplate app API
+  description: |
+    Documentazione delle API dii boilerplate
+
+  version: 1.0.0
+servers:
+  - url: 'https://laravel-boilerplate.it/api'
+
+security:
+  - accessTokenAuth: [ ]
+
+paths:
+  /auth/login:
+    post:
+      summary: Login
+      security: [ ]
+      tags:
+        - Auth
+      description: Effettua il login con email e password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  required: true
+                password:
+                  type: string
+                  format: password
+                  required: true
+                device_id:
+                  type: string
+                  required: true
+                  description: Un identificativo dell'installazione.
+
+      responses:
+        '200':
+          description: Login corretto
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+                  meta:
+                    $ref: '#/components/schemas/AuthTokens'
+        '401':
+          description: |
+            Credenziali non valide. code: `10` title: `InvalidCredentials`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /auth/refresh:
+    post:
+      summary: Refresh token
+      security:
+        - refreshTokenAuth: [ ]
+      tags:
+        - Auth
+      description: Ottiene tokens aggiornati, usando il refresh token
+
+      responses:
+        '200':
+          description: Refresh token valido
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+                  meta:
+                    $ref: '#/components/schemas/AuthTokens'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+
+  /auth/logout:
+    post:
+      summary: Logout
+      tags:
+        - Auth
+      description: Annulla l'access token usato e il refresh token collegato
+      responses:
+        '204':
+          description: Logout effettuato correttamente
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /auth/reset-password:
+    post:
+      summary: Reset password
+      security: [ ]
+      tags:
+        - Auth
+      description: Richiede il reset della password tramite email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  required: true
+                  format: email
+      responses:
+        '200':
+          description: Richiesta gestita correttamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                    description: true se l'email è stata inviata, false altrimenti
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /user:
+    get:
+      summary: Profilo utente
+      tags:
+        - User
+      description: Ottiene i dati dell'utente loggato
+
+      responses:
+        '200':
+          description: I dati dell'utente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+components:
+
+  securitySchemes:
+    accessTokenAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: string
+      description: |
+        Header `Authorization` nel formato `Bearer ${accessToken}`
+    refreshTokenAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: string
+      description: |
+        Header `Authorization` nel formato `Bearer ${refreshToken}`
+
+  responses:
+    ValidationError:
+      description: |
+        Dati nella richiesta invalidi. code: `1` title: `InvalidRequest`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ForbiddenError:
+      description: |
+        Non autorizzato a questo endpoint / questa risorsa. code `12` title `Forbidden`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnauthorizedError:
+      description: |
+        Token di autorizzazione non valido. code `11` title `Unauthorized`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ResourceNotFoundError:
+      description: |
+        Risorsa non esistente o non disponibile. code `6` title `ResourceNotFound`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          items:
+            title: error
+            required:
+              - code
+              - status
+              - title
+              - detail
+            properties:
+              code:
+                description: API error code
+                type: string
+              status:
+                description: HTTP status code
+                type: string
+              title:
+                description: Titolo errore
+                type: string
+                enum:
+                  - Unauthorized
+                  - InvalidRequest
+                  - Forbidden
+                  - HttpNotFound
+                  - ResourceNotFound
+              detail:
+                description: Descrizione errore
+                type: string
+              meta:
+                description: Eventuali info aggiuntive sull'errore
+                nullable: true
+                type: object
+                default: null
+            type: object
+
+    AuthTokens:
+      type: object
+      properties:
+        access:
+          type: object
+          properties:
+            token:
+              type: string
+              format: secret
+              required: true
+            expires_at:
+              type: string
+              format: date-time
+              required: true
+        refresh:
+          type: object
+          properties:
+            token:
+              type: string
+              format: secret
+              required: true
+            expires_at:
+              type: string
+              format: date-time
+              required: true
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          required: true
+        type:
+          type: string
+          required: true
+          default: user
+        attributes:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+            name:
+              type: string
+
+
+
+
+
+

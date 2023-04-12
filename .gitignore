@@ -1,0 +1,33 @@
+# IDE / Editors
+/.fleet
+/.idea
+/.vscode
+
+# Npm/Yarn
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# Composer
+/vendor
+Homestead.json
+Homestead.yaml
+
+# PHPUnit
+/.phpunit.cache
+.phpunit.result.cache
+
+# Builded Artifacts
+/public/build
+/public/hot
+
+# Env
+.env
+.env.backup
+.env.production
+
+# Files
+/public/storage
+/storage/*.key
+auth.json
+

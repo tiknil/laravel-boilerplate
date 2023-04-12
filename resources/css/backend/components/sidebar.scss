@@ -1,0 +1,125 @@
+/*
+ * Sidebar
+ */
+
+:root {
+  // Main styles
+  --sidebar-width: 14rem;
+  --sidebar-txt-color: var(--bs-gray-200);
+  --sidebar-bg: var(--bs-gray-800);
+
+  // Active element
+  --sidebar-active-color: white;
+  --sidebar-active-bg: var(--bs-gray-700);
+
+  // Header
+  --sidebar-header-height: var(--header-height, 4rem);
+  --sidebar-header-bg: var(--bs-dark);
+  --sidebar-header-color: white;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1001; // 1 in più dell'header
+  width: var(--sidebar-width);
+  transition: margin-left .15s;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-txt-color);
+
+  &.hide {
+    margin-left: calc(-1 * var(--sidebar-width));
+  }
+
+  margin-left: 0;
+
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--sidebar-header-bg);
+    height: var(--sidebar-header-height);
+    color: var(--sidebar-header-color);
+
+    .sidebar-logo {
+      max-width: calc(var(--sidebar-width) - 2rem);
+      max-height: calc(var(--sidebar-header-height) - 1rem);
+    }
+  }
+
+  .sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    flex: 1;
+    overflow-y: auto;
+
+    .nav-title {
+      text-transform: uppercase;
+      padding: .75rem 1rem;
+      font-size: 80%;
+      font-weight: 700;
+      color: var(--sidebar-txt-color);
+
+      &[data-bs-target] {
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--sidebar-active-bg);
+
+          .nav-title-icon {
+            color: white;
+          }
+        }
+
+        &.collapsed {
+          .nav-title-icon {
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+
+    .nav-link {
+      padding: .75rem 1rem;
+      color: var(--sidebar-txt-color);
+      display: flex;
+      align-items: center;
+
+      &.disabled {
+        cursor: not-allowed;
+      }
+
+      .nav-icon {
+        font-size: 1.25rem;
+        margin-right: 1rem;
+      }
+
+      &:hover, &.active {
+        color: var(--sidebar-active-color);
+        background-color: var(--sidebar-active-bg);
+        text-decoration: none;
+      }
+    }
+
+    hr {
+      margin: 0.3rem 2rem;
+    }
+  }
+
+}
+
+.sidebar:not(.sidebar-end) + * {
+  padding-left: var(--sidebar-width);
+
+  transition: padding-left 0.15s;
+}
+
+.sidebar.hide:not(.sidebar-end) + * {
+  padding-left: 0;
+}
