@@ -12,36 +12,24 @@
 </head>
 <body>
 
-@include('backend.sidebar')
+@include('backend.components.sidebar')
 <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-  @include('backend.header')
+
+  @include('backend.components.header')
 
   <div class="body flex-grow-1 px-3 @yield('page-class')" id="@yield('page-id')">
 
-    @if(Session::has('success'))
-      <div class="alert alert-success mb-2">
-        {{ Session::get('success') }}
-      </div>
-    @endif
-
-    @if(Session::has('warning'))
-      <div class="alert alert-warning mb-2">
-        {{ Session::get('warning') }}
-      </div>
-    @endif
-
-    @if (isset($errors) && count($errors) > 0)
-      <div class="alert alert-danger mb-2">
-        @foreach ($errors->all() as $error)
-          {{ $error }} <br/>
-        @endforeach
-      </div>
-    @endif
+    @include('backend.components.alerts')
 
     @yield('content')
   </div>
 </div>
 
+<div id="toastes" class="toast-container p-3 mt-5 position-fixed top-0 end-0"></div>
+
+<script>
+  window.TOASTS = {!! json_encode(\App\Utils\Toast::all()) !!}
+</script>
 @stack('scripts')
 </body>
 </html>

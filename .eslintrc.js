@@ -23,6 +23,7 @@ module.exports = {
     'max-len': ['warn', { code: 120 }],
     'no-undef': ['off'],
     '@typescript-eslint/no-non-null-assertion': ['off'],
+    '@typescript-eslint/no-inferrable-types': ['off'],
   },
   ignorePatterns: ['public/**/*'],
 }

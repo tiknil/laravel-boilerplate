@@ -1,22 +1,18 @@
 <div id="sidebar" class="sidebar">
   <div class="sidebar-header">
-    {{--
-    <img class="sidebar-logo" src="https://beta.tiknil.com/images/logo.svg">
-    --}}
-    <span class="badge bg-primary fs-5">{{ config('app.name') }}</span>
+    <img class="sidebar-logo" src="https://www.tiknil.com/images/logo.png" loading="lazy"/>
   </div>
 
   <ul class="sidebar-nav">
 
-    <li class="nav-title mt-1">Titoletto</li>
     <li class="nav-item">
       <a href="{{ route('backend.dashboard') }}" class="nav-link">
-        <i class="nav-icon bi bi-speedometer2"></i> Dashboard
+        <i class="nav-icon bi bi-speedometer2"></i> {{ __('backend.dashboard') }}
       </a>
     </li>
 
     <li class="nav-title mt-1 collapsed" data-bs-toggle="collapse" data-bs-target="#sidebar-group">
-      Accordion
+      {{ __('backend.users') }}
       <span class="nav-title-icon" style="float: right"><i class="bi bi-chevron-down"></i></span>
     </li>
 
@@ -24,13 +20,13 @@
 
       <li class="nav-item">
         <a href="#" class="nav-link">
-          <i class="nav-icon bi bi-card-checklist"></i> Link 1
+          <i class="nav-icon bi bi-people"></i> {{ __('backend.users') }}
         </a>
       </li>
 
       <li class="nav-item">
         <a href="#" class="nav-link">
-          <i class="nav-icon bi bi-person-badge"></i> Link 2
+          <i class="nav-icon bi bi-person-plus"></i> {{ __('backend.create_user') }}
         </a>
       </li>
     </div>

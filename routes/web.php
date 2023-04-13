@@ -21,5 +21,12 @@ Route::redirect('/', '/login');
 Route::get('/logout', [Auth\LoginController::class, 'logout'])->name('auth.logout');
 
 Route::group(['middleware' => ['auth:web'], 'prefix' => '/backend'], function () {
+
     Route::get('/', [Backend\DashboardController::class, 'dashboard'])->name('backend.dashboard');
+    Route::get('/toast-demo', [Backend\DashboardController::class, 'toastDemo'])->name('backend.toast-demo');
+    Route::get('/alert-demo', [Backend\DashboardController::class, 'alertDemo'])->name('backend.alert-demo');
+
+    Route::get('/profile', [Backend\ProfileController::class, 'page'])->name('backend.profile');
+    Route::post('/profile', [Backend\ProfileController::class, 'submit'])->name('backend.profile.submit');
+
 });
