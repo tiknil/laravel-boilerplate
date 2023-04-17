@@ -1,36 +1,36 @@
 <div id="sidebar" class="sidebar">
   <div class="sidebar-header">
-    <img class="sidebar-logo" src="https://www.tiknil.com/images/logo.png" loading="lazy"/>
+    <img class="sidebar-logo" src="https://www.tiknil.com/images/logo.png" loading="lazy" alt="Logo"/>
   </div>
 
-  <ul class="sidebar-nav">
+  <nav class="sidebar-nav">
 
-    <li class="nav-item">
+    <span class="nav-item">
       <a href="{{ route('backend.dashboard') }}" class="nav-link">
         <i class="nav-icon bi bi-speedometer2"></i> {{ __('backend.dashboard') }}
       </a>
-    </li>
+    </span>
 
-    <li class="nav-title mt-1 collapsed" data-bs-toggle="collapse" data-bs-target="#sidebar-group">
+    <span class="nav-title mt-1 collapsed" data-bs-toggle="collapse" data-bs-target="#sidebar-group">
       {{ __('backend.users') }}
       <span class="nav-title-icon" style="float: right"><i class="bi bi-chevron-down"></i></span>
-    </li>
+    </span>
 
     <div id="sidebar-group" class="collapse">
 
-      <li class="nav-item">
+      <span class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon bi bi-people"></i> {{ __('backend.users') }}
         </a>
-      </li>
+      </span>
 
-      <li class="nav-item">
+      <span class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon bi bi-person-plus"></i> {{ __('backend.create_user') }}
         </a>
-      </li>
+      </span>
     </div>
 
-  </ul>
+  </nav>
 </div>
 
