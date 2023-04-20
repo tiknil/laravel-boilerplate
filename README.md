@@ -115,6 +115,7 @@ path `/docs/api.html`
 
 Sono installate alcune dipendenze utili, in particolare:
 
+- Livewire + [wire-table](https://github.com/tiknil/wire-table)
 - Bugsnag: basta impostare `BUGSNAG_API_KEY` nell'env. Di default gli errori vengono riportati solo se l'env
   è `production`
 - [Backup](https://spatie.be/docs/laravel-backup/v8/introduction): Tutto predisposto per fare backup su s3
