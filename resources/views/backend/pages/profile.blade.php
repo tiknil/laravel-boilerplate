@@ -1,6 +1,6 @@
 @extends('backend.page')
 
-@section('title', 'Profilo')
+@section('title', __('backend.profile'))
 
 @section('page-id', 'profile')
 

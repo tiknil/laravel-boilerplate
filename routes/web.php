@@ -29,4 +29,10 @@ Route::group(['middleware' => ['auth:web'], 'prefix' => '/backend'], function ()
     Route::get('/profile', [Backend\ProfileController::class, 'page'])->name('backend.profile');
     Route::post('/profile', [Backend\ProfileController::class, 'submit'])->name('backend.profile.submit');
 
+    Route::get('/users', [Backend\UsersController::class, 'page'])->name('backend.users');
+    Route::get('/users/create', [Backend\UsersController::class, 'create'])->name('backend.users.create');
+    Route::post('/users/create', [Backend\UsersController::class, 'store'])->name('backend.users.store');
+    Route::get('/users/{id}/edit', [Backend\UsersController::class, 'edit'])->name('backend.users.edit');
+    Route::patch('/users/{id}', [Backend\UsersController::class, 'update'])->name('backend.users.update');
+
 });

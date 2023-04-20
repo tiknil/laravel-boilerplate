@@ -19,13 +19,13 @@
     <div id="sidebar-group" class="collapse">
 
       <span class="nav-item">
-        <a href="#" class="nav-link" onclick="showToast('info', 'Non implementato')">
+        <a href="{{ route('backend.users') }}" class="nav-link">
           <i class="nav-icon bi bi-people"></i> {{ __('backend.users') }}
         </a>
       </span>
 
       <span class="nav-item">
-        <a href="#" class="nav-link" onclick="showToast('info', 'Non implementato')">
+        <a href="{{ route('backend.users.create') }}" class="nav-link">
           <i class="nav-icon bi bi-person-plus"></i> {{ __('backend.create_user') }}
         </a>
       </span>

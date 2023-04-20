@@ -13,7 +13,9 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "league/flysystem-aws-s3-v3": "^3.13",
-        "spatie/laravel-backup": "^8.1"
+        "livewire/livewire": "^2.12",
+        "spatie/laravel-backup": "^8.1",
+        "tiknil/wire-table": "^0.0.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
