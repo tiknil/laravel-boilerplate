@@ -32,7 +32,8 @@ git init
 git add .
 git commit -m "Inizializzato progetto da boilerplate"
 
-skipper sail --alias=[laravel-project].it 
+skipper init
+skipper sail
 ....
 
 skipper composer install
@@ -43,6 +44,8 @@ skipper artisan db:seed # Crea utente info@tiknil.com con password 'password'
 yarn install
 yarn build      # Build iniziale per generare il manifest di vite
 ```
+
+> Si suppone l'utilizzo di [skipper](https://github.com/tiknil/skipper) per l'avvio del progetto in locale
 
 # Features
 
