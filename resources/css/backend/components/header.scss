@@ -4,13 +4,17 @@
 
 header.header {
 
-
   --header-height: 4rem;
   --header-border: #d8dbe0;
   --header-bg: white;
   --header-txt-color: rgba(44, 56, 74, 0.682);
   --header-txt-hover-color: rgba(44, 56, 74, 0.682);
 
+  &.header-dark {
+    --header-bg: var(--bs-gray-800);
+    --header-txt-color: var(--bs-gray-300);
+    --header-txt-hover-color: var(--bs-gray-100);
+  }
 
   &.header-sticky {
     position: sticky;
