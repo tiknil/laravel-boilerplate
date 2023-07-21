@@ -8,7 +8,8 @@
   <title> @yield('title') | {{ config('app.name') }}</title>
 
   @vite(['resources/css/backend/main.scss', 'resources/js/backend/main.ts'])
-  @stack('styles')
+  @livewireStyles
+  @stack('style')
 </head>
 <body>
 
@@ -30,6 +31,7 @@
 <script>
   window.TOASTS = {!! json_encode(\App\Utils\Toast::all()) !!}
 </script>
+@livewireScripts
 @stack('scripts')
 </body>
 </html>
