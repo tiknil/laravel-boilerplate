@@ -1,0 +1,49 @@
+$primary: #005578;
+$text: #005578;
+$secondary: #afca0b;
+$accent: #e55934;
+$background: #e7e8e8;
+$white: #fff;
+$black: #000;
+
+$fw-light: 300;
+$fw-regular: 400;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// Layout Breakpoints (see _layout.scss)
+$xs: 400px;
+$sm: 760px;
+$md: 1100px;
+$lg: 1360px;
+
+$contentWidth: 1500px;
+
+$gFontName: 'Montserrat';
+$font: $gFontName, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+$handGFontName: 'Tangerine';
+$handwritingFont: $handGFontName, cursive;
+
+:root {
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --accent: #{$accent};
+  --text: #{$text};
+  --background: #{$background};
+  --white: #{$white};
+  --black: #{$black};
+
+  --fw-light: #{$fw-light};
+  --fw-reg: #{$fw-regular};
+  --fw-sb: #{$fw-semibold};
+  --fw-b: #{$fw-bold};
+
+  --xs: #{$xs};
+  --sm: #{$sm};
+  --md: #{$md};
+  --lg: #{$lg};
+
+  --handwriting-font: #{$handwritingFont};
+  --font: #{$font};
+}

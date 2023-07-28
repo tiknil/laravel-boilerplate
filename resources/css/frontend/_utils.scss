@@ -1,0 +1,123 @@
+/*
+ * Text utils
+ */
+
+.fw-l {
+  font-weight: var(--fw-light);
+}
+.fw-r {
+  font-weight: var(--fw-reg);
+}
+.fw-sb {
+  font-weight: var(--fw-sb);
+}
+.fw-b {
+  font-weight: var(--fw-b);
+}
+
+.text-white {
+  color: white;
+}
+
+.text-primary, .svg-primary {
+  color: var(--primary);
+}
+
+.text-secondary, .svg-secondary {
+  color: var(--secondary);
+}
+
+.text-accent, .svg-accent {
+  color: var(--accent);
+}
+
+.text-background, .svg-background {
+  color: var(--light);
+}
+
+.text-white, .svg-white {
+  color: var(--white);
+}
+
+.text, .svg-text {
+  color: var(--text);
+}
+
+
+.text-black, .svg-black {
+  color: var(--black);
+}
+
+
+.upper {
+  text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+/*
+ * Margins and paddings
+ */
+@function sizeValue($i) {
+  @if $i == 'auto' {
+    @return auto;
+  } @else {
+    @return 0.25rem * $i;
+  }
+}
+@each $i in 1, 2, 3, 4, 5, 6, 7, 8, 'auto' {
+  .mt-#{$i} {
+    margin-top: sizeValue($i) !important;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: sizeValue($i) !important;
+  }
+
+  .ms-#{$i} {
+    margin-left: sizeValue($i) !important;
+  }
+
+  .me-#{$i} {
+    margin-right: sizeValue($i) !important;
+  }
+
+  .mh-#{$i} {
+    @extend .ms-#{$i};
+    @extend .me-#{$i};
+  }
+
+  .mv-#{$i} {
+    @extend .mt-#{$i};
+    @extend .mb-#{$i};
+  }
+
+  .pt-#{$i} {
+    padding-top: sizeValue($i) !important;
+  }
+
+  .pb-#{$i} {
+    padding-bottom: sizeValue($i) !important;
+  }
+
+  .ps-#{$i} {
+    padding-left: sizeValue($i) !important;
+  }
+
+  .pe-#{$i} {
+    padding-right: sizeValue($i) !important;
+  }
+
+  .ph-#{$i} {
+    @extend .ps-#{$i};
+    @extend .pe-#{$i};
+  }
+
+  .pv-#{$i} {
+    @extend .pt-#{$i};
+    @extend .pb-#{$i};
+  }
+}

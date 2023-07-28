@@ -1,2 +1,0 @@
-## Tiknil vue pattern
-

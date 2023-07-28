@@ -1,0 +1,176 @@
+/*
+ * Mixins per modificare le regole di layout a varie dimensioni
+ * es. per applicare uno stile su dispositivi piccoli all'elemento #title:
+#title {
+    color: red;
+
+    @include xs-only {
+        color: blue;
+    }
+}
+ */
+
+/*
+ * I Breakpoint sono definiti del file _vars.scss
+ */
+
+/*
+ * XS
+ */
+@mixin xs-only {
+  @media (max-width: #{$xs - 1px}) {
+    @content;
+  }
+}
+
+/*
+ * SM
+ */
+@mixin sm-down {
+  @media (max-width: #{$sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin sm-only {
+  @media (min-width: #{$xs}) and (max-width: #{$sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin sm-up {
+  @media (min-width: #{$xs}) {
+    @content;
+  }
+}
+/*
+ * MD
+ */
+@mixin md-down {
+  @media (max-width: #{$md - 1px}) {
+    @content;
+  }
+}
+
+@mixin md-only {
+  @media (min-width: #{$sm}) and (max-width: #{$md - 1px}) {
+    @content;
+  }
+}
+
+@mixin md-up {
+  @media (min-width: #{$sm}) {
+    @content;
+  }
+}
+
+/*
+ * LG
+ */
+@mixin lg-down {
+  @media (max-width: #{$lg - 1px}) {
+    @content;
+  }
+}
+
+@mixin lg-only {
+  @media (min-width: #{$md}) and (max-width: #{$lg - 1px}) {
+    @content;
+  }
+}
+
+@mixin lg-up {
+  @media (min-width: #{$md}) {
+    @content;
+  }
+}
+
+/*
+ * XL
+ */
+@mixin xl-only {
+  @media (min-width: #{$lg}) {
+    @content;
+  }
+}
+/*
+ * Classi per controllare la visibilità degli elementi a vari breakpoints
+ */
+
+.xs-only {
+  @include sm-up {
+    display: none !important;
+  }
+}
+
+.sm-up {
+  @include xs-only {
+    display: none !important;
+  }
+}
+
+.sm-down {
+  @include md-up {
+    display: none !important;
+  }
+}
+
+.sm-only {
+  @include md-up {
+    display: none !important;
+  }
+
+  @include xs-only {
+    display: none !important;
+  }
+}
+
+.md-up {
+  @include sm-down {
+    display: none !important;
+  }
+}
+
+.md-down {
+  @include lg-up {
+    display: none !important;
+  }
+}
+
+.md-only {
+  @include lg-up {
+    display: none !important;
+  }
+
+  @include sm-down {
+    display: none !important;
+  }
+}
+
+.lg-up {
+  @include md-down {
+    display: none !important;
+  }
+}
+
+.lg-down {
+  @include xl-only {
+    display: none !important;
+  }
+}
+
+.lg-only {
+  @include xl-only {
+    display: none !important;
+  }
+
+  @include md-down {
+    display: none !important;
+  }
+}
+
+.xl-only {
+  @include lg-down {
+    display: none !important;
+  }
+}
