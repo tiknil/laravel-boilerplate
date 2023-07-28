@@ -35,4 +35,6 @@ Route::group(['middleware' => ['auth:web'], 'prefix' => '/backend'], function ()
     Route::get('/users/{id}/edit', [Backend\UsersController::class, 'edit'])->name('backend.users.edit');
     Route::patch('/users/{id}', [Backend\UsersController::class, 'update'])->name('backend.users.update');
 
+    Route::view('/vue', 'backend.pages.vue')->name('backend.vue');
+
 });

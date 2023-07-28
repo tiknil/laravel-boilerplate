@@ -11,6 +11,12 @@
       </a>
     </span>
 
+    <span class="nav-item">
+      <a href="{{ route('backend.vue') }}" class="nav-link">
+        <i class="nav-icon bi bi-filetype-js"></i> Vue
+      </a>
+    </span>
+
     <span class="nav-title mt-1 collapsed" data-bs-toggle="collapse" data-bs-target="#sidebar-group">
       {{ __('backend.users') }}
       <span class="nav-title-icon" style="float: right"><i class="bi bi-chevron-down"></i></span>
