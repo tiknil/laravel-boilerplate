@@ -1,22 +1,35 @@
 {
-  "compilerOptions": {
-    "experimentalDecorators": true,
-    "module": "es2015",
-    "target": "es2015",
-    "allowJs": true,
-    "noImplicitAny": false,
-    "moduleResolution": "node",
-    "sourceMap": false,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": [
-      "dom",
-      "scripthost",
-      "es2015",
-      "es2015.promise"
+    "compilerOptions": {
+        "target": "ES2015",
+        "useDefineForClassFields": true,
+        "module": "ESNext",
+        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "skipLibCheck": true,
+        "composite": true,
+        "experimentalDecorators": true,
+
+        /* Bundler mode */
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "preserve",
+
+        /* Linting */
+        "strict": true,
+        "noImplicitAny": false,
+
+        "paths": {
+            "@/*": ["./resources/js/*"]
+        }
+    },
+    "include": [
+        "vite.config.js",
+        "resources/js/**/*.ts",
+        "resources/js/**/*.d.ts",
+        "resources/js/**/*.tsx",
+        "resources/js/**/*.vue"
     ],
-  },
-  "include": [
-    "resources/js/**/*"
-  ]
 }

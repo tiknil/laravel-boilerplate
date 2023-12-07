@@ -27,11 +27,6 @@ class UsersTable extends WireTable
                 sort: true
             ),
             Column::create(
-                label: __('backend.name'),
-                key: 'name',
-                sort: true
-            ),
-            Column::create(
                 label: __('backend.email'),
                 key: 'email',
                 sort: true

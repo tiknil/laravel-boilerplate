@@ -19,7 +19,6 @@ return [
     'logout_confirm' => 'Ti stai disconnettendo. Vuoi procedere?',
 
     // Sidebar
-    'dashboard' => 'Dashboard',
     'users' => 'Utenti',
 
     // Profilo

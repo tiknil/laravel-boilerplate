@@ -197,42 +197,40 @@ components:
   schemas:
     ErrorResponse:
       required:
-        - errors
+        - error
       properties:
-        errors:
-          type: array
-          items:
-            title: error
-            required:
-              - code
-              - status
-              - title
-              - detail
-            properties:
-              code:
-                description: API error code
-                type: string
-              status:
-                description: HTTP status code
-                type: string
-              title:
-                description: Titolo errore
-                type: string
-                enum:
-                  - Unauthorized
-                  - InvalidRequest
-                  - Forbidden
-                  - HttpNotFound
-                  - ResourceNotFound
-              detail:
-                description: Descrizione errore
-                type: string
-              meta:
-                description: Eventuali info aggiuntive sull'errore
-                nullable: true
-                type: object
-                default: null
-            type: object
+        error:
+          title: error
+          required:
+            - code
+            - status
+            - title
+            - detail
+          properties:
+            code:
+              description: API error code
+              type: string
+            status:
+              description: HTTP status code
+              type: string
+            title:
+              description: Titolo errore
+              type: string
+              enum:
+                - Unauthorized
+                - InvalidRequest
+                - Forbidden
+                - HttpNotFound
+                - ResourceNotFound
+            detail:
+              description: Descrizione errore
+              type: string
+            meta:
+              description: Eventuali info aggiuntive sull'errore
+              nullable: true
+              type: object
+              default: null
+          type: object
 
     AuthTokens:
       type: object

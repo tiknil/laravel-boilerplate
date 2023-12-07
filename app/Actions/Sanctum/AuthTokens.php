@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Auth;
+namespace App\Actions\Sanctum;
 
 use App\Models\User;
 use Carbon\Carbon;

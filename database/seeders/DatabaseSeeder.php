@@ -13,8 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Tiknil sviluppo',
+        User::factory()->admin()->create([
             'email' => 'info@tiknil.com',
         ]);
     }

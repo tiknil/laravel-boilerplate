@@ -22,9 +22,7 @@ Route::get('/logout', [Auth\LoginController::class, 'logout'])->name('auth.logou
 
 Route::group(['middleware' => ['auth:web'], 'prefix' => '/backend'], function () {
 
-    Route::get('/', [Backend\DashboardController::class, 'dashboard'])->name('backend.dashboard');
-    Route::get('/toast-demo', [Backend\DashboardController::class, 'toastDemo'])->name('backend.toast-demo');
-    Route::get('/alert-demo', [Backend\DashboardController::class, 'alertDemo'])->name('backend.alert-demo');
+    Route::redirect('/', '/backend/users');
 
     Route::get('/profile', [Backend\ProfileController::class, 'page'])->name('backend.profile');
     Route::post('/profile', [Backend\ProfileController::class, 'submit'])->name('backend.profile.submit');
@@ -34,7 +32,4 @@ Route::group(['middleware' => ['auth:web'], 'prefix' => '/backend'], function ()
     Route::post('/users/create', [Backend\UsersController::class, 'store'])->name('backend.users.store');
     Route::get('/users/{id}/edit', [Backend\UsersController::class, 'edit'])->name('backend.users.edit');
     Route::patch('/users/{id}', [Backend\UsersController::class, 'update'])->name('backend.users.update');
-
-    Route::view('/vue', 'backend.pages.vue')->name('backend.vue');
-
 });

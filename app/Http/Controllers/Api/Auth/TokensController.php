@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Actions\Sanctum\AuthTokens;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Resources\UserResource;
 use App\Http\Responses\Api\ApiError;

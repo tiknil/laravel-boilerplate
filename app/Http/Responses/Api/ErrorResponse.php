@@ -13,7 +13,7 @@ class ErrorResponse
         $meta = null
     ): JsonResponse {
         return new JsonResponse([
-            'errors' => [
+            'error' =>
                 [
                     'status' => $httpStatus,
                     'code' => $error->value,
@@ -21,7 +21,6 @@ class ErrorResponse
                     'details' => $details,
                     'meta' => $meta,
                 ],
-            ],
         ], $httpStatus);
     }
 

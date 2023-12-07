@@ -43,7 +43,6 @@ class UsersController
         $isCreation = is_null($user);
 
         $params = $request->validate([
-            'name' => 'required|string',
             'email' => [
                 'required',
                 'email',
@@ -58,7 +57,6 @@ class UsersController
             $user = new User();
         }
 
-        $user->name = $params['name'];
         $user->email = $params['email'];
 
         if (!empty($params['password'])) {

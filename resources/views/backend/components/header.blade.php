@@ -16,9 +16,6 @@
           <i class="bi bi-chevron-down"></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="userDropdown" style="min-width: 250px">
-          <span class="dropdown-item-text">
-            {{ Auth::user()->name }}
-          </span>
           <span class="dropdown-item-text">{{ Auth::user()->email }}</span>
           <span class="dropdown-item-text">
             <a href="{{ route('backend.profile') }}">{{ __('backend.profile_update_link') }}</a>

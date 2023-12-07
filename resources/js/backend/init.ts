@@ -1,5 +1,5 @@
 import * as bootstrap from 'bootstrap'
-import { showToast } from '../utils/toast'
+import { showToast } from '@/utils/toast'
 import Alpine from 'alpinejs'
 
 window['Alpine'] = Alpine
@@ -47,7 +47,7 @@ if (sidebar) {
           sibling.classList.contains('nav-title') &&
           sibling.classList.contains('collapsed')
         ) {
-          (sibling as HTMLElement).click()
+          ;(sibling as HTMLElement).click()
 
           break
         }

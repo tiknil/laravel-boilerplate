@@ -21,13 +21,11 @@ class ProfileController
     {
         $user = Auth::user();
         $params = $request->validate([
-            'name' => 'required|string',
             'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
 
             'password' => 'nullable|confirmed',
         ]);
 
-        $user->name = $params['name'];
         $user->email = $params['email'];
 
         if ($params['password'] !== null) {

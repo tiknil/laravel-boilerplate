@@ -15,16 +15,6 @@
 
         <div class="row gy-3">
           <div class="form-group col-md-6 col-12">
-            <label class="form-label" for="name">{{ __('backend.name') }}</label>
-            <input type="text"
-                   id="name"
-                   name="name"
-                   class="form-control"
-                   value="{{ old('name', $user->name ?? '') }}"
-                   required/>
-          </div>
-
-          <div class="form-group col-md-6 col-12">
             <label class="form-label" for="email">{{ __('backend.email') }}</label>
             <input type="email"
                    id="email"
