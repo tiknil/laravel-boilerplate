@@ -1,9 +1,6 @@
 import * as bootstrap from 'bootstrap'
 import { showToast } from '@/utils/toast'
-import Alpine from 'alpinejs'
-
-window['Alpine'] = Alpine
-Alpine.start()
+import '@/components/multi-select'
 
 window.bootstrap = bootstrap
 

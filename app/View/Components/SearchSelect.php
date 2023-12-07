@@ -3,14 +3,11 @@
 namespace App\View\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class MultiSelect extends Component
+class SearchSelect extends Component
 {
-    public string $name;
-
-    public bool $multiple = true;
+    public bool $multiple = false;
 
     /**
      * Create a new component instance.
@@ -18,13 +15,12 @@ class MultiSelect extends Component
      * @return void
      */
     public function __construct(
-        string $name = '',
+        public string $name,
         public array $options = [],
-        public ?array $selected = null,
+        public string|int|null $selected = null,
         public bool $required = false,
         public string $placeholder = '',
     ) {
-        $this->name = Str::endsWith($name, '[]') ? $name : "{$name}[]";
     }
 
     public function render(): View

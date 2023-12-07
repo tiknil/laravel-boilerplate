@@ -1,49 +1,58 @@
-<div class="multi-select"
-     x-data="{ open: false, search: '', selected: @js($initialSelected())}"
-     @click.outside="open = false"
-     x-init="$watch('open', open => open ? $refs.search.focus() : ''); $watch('selected', s => { $refs.search.focus(); $dispatch('input', selected) })"
->
-  <div class="form-select" @click="open = !open">
-    <template x-for="entry in Object.entries(selected)" :key="entry[1]">
-            <span class="badge bg-primary me-1">
-                <i class="bi bi-x-lg" @click="delete selected[entry[0]]"></i>&nbsp;
-                <span x-text="entry[1]"></span>
+<div class="ms-wrapper" @if($multiple) data-multiple @endif>
+
+    <div class="form-select ms-form-field">
+        <template class="ms-badge-template">
+            <span class="ms-badge badge bg-primary me-1">
+                <i class="bi bi-x-lg ms-remove-btn"></i>&nbsp;
+                <span class="ms-badge-label"></span>
             </span>
+        </template>
+
+        <input class="ms-ghost-input"
+               placeholder="{{ $placeholder }}"
+               type="text"/>
+    </div>
+
+    {{--
+        Input fittizio che serve per visualizzare il warning del browser quando il campo è required e
+        non sono stati inseriti valori.
+        Va impostato il value tramite js
+    --}}
+    <input type="text" class="ms-hidden-fake-input" @if($required) required @endif/>
+
+    <ul class="ms-options">
+        @foreach($options as $key => $label)
+            <li class="ms-option"
+                data-value="{{ $key }}"
+            >
+                <i class="bi bi-check-lg text-primary ms-check-icon"></i>
+                <span class="ms-option-label">{{ $label }}</span>
+            </li>
+        @endforeach
+
+        <li class="ms-empty-option text-muted">
+            Nessun opzione disponibile
+        </li>
+    </ul>
+
+    {{--
+        Per ogni valore selezionato creiamo un campo nascosto con il name e il valore da inviare tramite form.
+        Vanno creati / eliminati tramite js
+    --}}
+    <template class="ms-input-template">
+        <input type="hidden" class="ms-input-hidden" name="{{ $name }}"/>
     </template>
-
-
-    <input class="ghost-input"
-           placeholder="{{ $placeholder }}"
-           type="text"
-           x-ref="search"
-           x-model="search"/>
-  </div>
-
-  <select name="{{ $name }}[]" id="{{$name}}" multiple class="hidden-input" @if($required) required @endif>
-    @foreach($options as $key => $label)
-      <option value="{{ $key }}" x-bind:selected="selected['{{ $key }}'] !== undefined">{{$label}}</option>
-    @endforeach
-  </select>
-
-  <ul class="multi-select-options" x-bind:class="open ? 'open' : ''">
-    @foreach($options as $key => $label)
-      <li class="option"
-          x-show="search === '' || $el.innerText.toLowerCase().includes(search.toLowerCase())"
-          data-value="{{ $key }}"
-          @click="selected[$el.dataset.value] === undefined
-                    ? selected[$el.dataset.value] = $el.innerText
-                    : delete selected[$el.dataset.value]"
-      >
-        <i x-show="selected[$el.parentElement.dataset.value] !== undefined"
-           class="bi bi-check-lg text-primary"></i>
-        {{ $label }}
-      </li>
-    @endforeach
-
-    @if(count($options) === 0)
-      <li class="empty-option text-muted">
-        Nessun opzione disponibile
-      </li>
+    @if($multiple)
+        @foreach($selected as $value)
+            <input type="hidden"
+                   class="ms-input-hidden"
+                   value="{{ $value }}"
+                   name="{{ $name }}"/>
+        @endforeach
+    @elseif(!empty($selected))
+        <input type="hidden"
+               class="ms-input-hidden"
+               value="{{ $selected ?? '' }}"
+               name="{{ $name }}"/>
     @endif
-  </ul>
 </div>
