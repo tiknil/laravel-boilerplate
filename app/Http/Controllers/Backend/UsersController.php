@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
@@ -50,6 +51,7 @@ class UsersController
                     ? Rule::unique('users')
                     : Rule::unique('users')->ignore($user->id),
             ],
+            'role' => ['nullable', 'string'],
             'password' => [$isCreation ? 'required' : 'nullable', 'confirmed'],
         ]);
 
@@ -61,6 +63,10 @@ class UsersController
 
         if (!empty($params['password'])) {
             $user->password = Hash::make($params['password']);
+        }
+
+        if (Gate::allows('admin') && !empty($params['role'])) {
+            $user->role = $params['role'];
         }
 
         $user->save();

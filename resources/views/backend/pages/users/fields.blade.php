@@ -10,6 +10,21 @@
            value="{{ old('email', $user->email ?? '') }}"
            required/>
   </div>
+  @can('admin')
+    <div class="form-group col-md-6 col-12">
+
+      <label class="form-label" for="role">{{ __('backend.role') }}</label>
+
+      <select name="role" id="role" class="form-select">
+        @foreach(\App\Enums\UserRole::cases() as $role)
+          <option value="{{ $role->name }}" @selected(old('role', $user->role ?? '') == $role)>
+            {{ $role->label() }}
+          </option>
+        @endforeach
+      </select>
+    </div>
+  @endcan
+
 </div>
 
 <div class="row mt-4">

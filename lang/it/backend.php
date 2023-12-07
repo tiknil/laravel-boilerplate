@@ -5,6 +5,8 @@ return [
     // Generici
     'save' => 'Salva',
     'name' => 'Nome',
+    'role' => 'Ruolo',
+    'search' => 'Search',
     'email' => 'Email',
     'password' => 'Password',
     'password_confirmation' => 'Conferma password',
@@ -31,4 +33,5 @@ return [
     'create_user' => 'Nuovo utente',
     'edit_user' => 'Modifica utente :name',
 
+    'all_roles' => 'All roles',
 ];
