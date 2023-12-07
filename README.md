@@ -49,8 +49,8 @@ yarn build      # Build iniziale per generare il manifest di vite
 
 ## Documentazione
 
-- [Autenticazione web](docs/Auth.md)
-- [Backend di amministrazione](docs/Backend.md)
-- [API](docs/Api.md)
-- [Utilities](docs/Utilities.md)
-- [Setup PHPStorm](docs/PHPStorm.md)
+- [Autenticazione web](docs/boilerplate/Auth.md)
+- [Backend di amministrazione](docs/boilerplate/Backend.md)
+- [API](docs/boilerplate/Api.md)
+- [Utilities](docs/boilerplate/Utilities.md)
+- [Setup PHPStorm](docs/boilerplate/PHPStorm.md)
