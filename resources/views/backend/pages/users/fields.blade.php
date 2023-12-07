@@ -21,6 +21,7 @@
            name="password"
            class="form-control"
            minlength="8"
+           autocomplete="new-password"
            @if(!isset($user)) required @endif
            value="{{ old('password', '') }}"
     />
