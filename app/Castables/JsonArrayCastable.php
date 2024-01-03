@@ -14,13 +14,15 @@ use JsonSerializable;
  *
  * The class will be persisted in the DB as a json-encoded string
  */
-abstract class JsonArrayCastable implements Castable, Arrayable, JsonSerializable
+abstract class JsonArrayCastable implements Arrayable, Castable, JsonSerializable
 {
     abstract public static function fromArray(?array $data): self;
+
     public function jsonSerialize(): array
     {
         return $this->toArray();
     }
+
     public static function castUsing(array $arguments): CastsAttributes
     {
         $className = static::class;
