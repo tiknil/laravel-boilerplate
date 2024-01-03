@@ -5,7 +5,7 @@
     <div class="form-group col-xl-6 col-6">
       <div class="input-group">
         <span class="input-group-text"><i class="bi bi-search"></i></span>
-        <input type="text" class="form-control" placeholder="{{__('backend.search')}}" wire:model="search"/>
+        <input type="text" class="form-control" placeholder="{{__('backend.search')}}" wire:model.live="search"/>
       </div>
     </div>
 
@@ -14,7 +14,7 @@
       <div class="input-group">
         <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
 
-        <select name="role" id="role" class="form-select" wire:model="role">
+        <select name="role" id="role" class="form-select" wire:model.live="role">
           <option value="all"> {{ __('backend.all_roles') }} </option>
           @foreach(\App\Enums\UserRole::cases() as $role)
             <option value="{{ $role->name }}">

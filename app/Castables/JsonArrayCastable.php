@@ -17,12 +17,10 @@ use JsonSerializable;
 abstract class JsonArrayCastable implements Castable, Arrayable, JsonSerializable
 {
     abstract public static function fromArray(?array $data): self;
-
     public function jsonSerialize(): array
     {
         return $this->toArray();
     }
-
     public static function castUsing(array $arguments): CastsAttributes
     {
         $className = static::class;
