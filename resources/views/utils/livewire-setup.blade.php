@@ -1,5 +1,4 @@
 @once
-  @livewireStyles
   <style>
     .wt-loading-wrap {
       z-index: 100;
@@ -10,5 +9,12 @@
     }
   </style>
 
-  @livewireScripts
+  @push('scripts')
+    <script type="module">
+      Livewire.on('toast', ({toast}) => {
+        window.showToast(toast.type, toast.message)
+      })
+    </script>
+  @endpush
+
 @endonce

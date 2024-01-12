@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use App\Utils\Toast;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -63,6 +64,8 @@ class UsersTable extends WireTable
             //
         } else {
             $user->delete();
+
+            Toast::success('DONE!');
         }
     }
 

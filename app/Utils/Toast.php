@@ -24,9 +24,37 @@ class Toast implements \JsonSerializable
     {
         $toast = self::create($type, $message);
 
+        if (class_exists('Livewire\\Livewire')) {
+            if (\Livewire\Livewire::isLivewireRequest()) {
+                \Livewire\Livewire::current()->dispatch('toast', toast: $toast->toArray());
+
+                return $toast;
+            }
+        }
+
         $toast->push();
 
         return $toast;
+    }
+
+    public static function success(string $message): self
+    {
+        return self::show('success', $message);
+    }
+
+    public static function info(string $message): self
+    {
+        return self::show('info', $message);
+    }
+
+    public static function warning(string $message): self
+    {
+        return self::show('warning', $message);
+    }
+
+    public static function error(string $message): self
+    {
+        return self::show('error', $message);
     }
 
     /**
