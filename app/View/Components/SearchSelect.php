@@ -7,8 +7,6 @@ use Illuminate\View\Component;
 
 class SearchSelect extends Component
 {
-    public bool $multiple = false;
-
     /**
      * Create a new component instance.
      *
@@ -17,14 +15,18 @@ class SearchSelect extends Component
     public function __construct(
         public string $name,
         public array $options = [],
-        public string|int|null $selected = null,
+        public string|int|null $value = null,
         public bool $required = false,
+        public bool $livewire = false,
+        public bool $allowClear = false,
+        public string $emptyValue = '',
         public string $placeholder = '',
+        public string $searchPlaceholder = '',
     ) {
     }
 
     public function render(): View
     {
-        return view('components.multi-select');
+        return view('components.search-select');
     }
 }

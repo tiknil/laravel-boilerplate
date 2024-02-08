@@ -39,7 +39,7 @@ class UsersController
 
     }
 
-    private function createOrUpdate(Request $request, User|null $user): RedirectResponse
+    private function createOrUpdate(Request $request, ?User $user): RedirectResponse
     {
         $isCreation = is_null($user);
 

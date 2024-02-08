@@ -1,6 +1,7 @@
 import * as bootstrap from 'bootstrap'
 import { showToast } from '@/utils/toast'
 import '@/components/multi-select'
+import '@/components/search-select'
 
 window.bootstrap = bootstrap
 

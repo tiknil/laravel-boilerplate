@@ -13,8 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->admin()->create([
-            'email' => 'info@tiknil.com',
-        ]);
+        if (User::where('email', 'info@tiknil.com')->doesntExist()) {
+            User::factory()->admin()->create([
+                'email' => 'info@tiknil.com',
+            ]);
+        }
+
     }
 }

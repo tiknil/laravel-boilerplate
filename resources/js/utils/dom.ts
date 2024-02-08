@@ -23,3 +23,13 @@ export function addChildEventListener(
     }
   })
 }
+
+let timeout = 0
+export const debounce =
+  <T>(fn: (...args: T[]) => void, delay: number) =>
+  (...args: T[]) => {
+    clearTimeout(timeout)
+    // adds `as unknown as number` to ensure setTimeout returns a number
+    // like window.setTimeout
+    timeout = setTimeout(() => fn(...args), delay)
+  }
