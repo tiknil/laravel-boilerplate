@@ -84,7 +84,21 @@ class SearchSelect {
   }
 
   initLivewire = () => {
-    if (!window['Livewire']) return
+    const isLivewire = this.rootEl.hasAttribute('data-livewire')
+
+    if (!this.rootEl.hasAttribute('data-livewire')) {
+      if (window['Livewire']) {
+        console.info(
+          '[SearchSelect] Be sure to include the livewire attribute when rendering inside a Livewire component',
+        )
+      }
+
+      return
+    }
+    if (!window['Livewire']) {
+      console.error('MISSING LIVEWIRE GLOBAL OBJECT!')
+      return
+    }
 
     window['Livewire'].hook('morph.updated', ({ el }) => {
       if (el !== this.select) {
@@ -152,8 +166,6 @@ class SearchSelect {
 
       const dropdownOption = (template.content.cloneNode(true) as HTMLElement)
         .firstElementChild as HTMLElement
-
-      console.log(dropdownOption)
 
       dropdownOption.setAttribute('data-key', option.value)
       dropdownOption.querySelector('span')!.innerText = option.label

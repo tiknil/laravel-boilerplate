@@ -1,4 +1,6 @@
-<div class="ss-wrapper" @if($livewire) wire:ignore.self @endif>
+<div class="ss-wrapper"
+     @if($livewire) wire:ignore.self data-livewire @endif
+     @if(!empty($id)) id="{{ $id }}" @endif>
 
   {{--
     L'effettivo elemento select, nascosto dalla UI ma necessario per:
@@ -9,7 +11,8 @@
   <select name="{{ $name }}"
           @if($livewire) wire:key="ss-{{ $name }}" @endif
           @if($required) required @endif
-    {{ $attributes->merge(['class' => 'ss-ghost-select']) }}>
+          {{ $attributes->filter(fn (string $value, string $key) => str_starts_with($key, 'wire:model')) }}
+          class="ss-ghost-select">
 
     <option @selected(($value ?? $emptyValue) == $emptyValue) value="{{ $emptyValue }}"></option>
     @foreach($options as $key => $label)
@@ -21,11 +24,16 @@
   {{--
     L'elemento che viene visualizzato nella UI come se fosse un select
   --}}
-  <div class="form-select ss-box"
+  <div role="button"
        @if($livewire) wire:ignore @endif
-       role="button"
-       aria-label="{{ $placeholder }}">
-    <div class="text-muted ss-placeholder">{{ $placeholder ?? '&nbsp;' }}</div>
+       aria-label="{{ $placeholder }}"
+    {{ $attributes->filter(fn (string $value, string $key) => !str_starts_with($key, 'wire:model'))->merge(['class' => 'form-select ss-box']) }}
+  >
+    <div class="text-muted ss-placeholder">@if(empty($placeholder))
+        &nbsp;
+      @else
+        {{ $placeholder }}
+      @endif</div>
     <div class="ss-value-label" style="display:none;"></div>
   </div>
 

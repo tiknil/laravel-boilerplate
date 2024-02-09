@@ -22,6 +22,7 @@ class SearchSelect extends Component
         public string $emptyValue = '',
         public string $placeholder = '',
         public string $searchPlaceholder = '',
+        public string $id = '',
     ) {
     }
 
