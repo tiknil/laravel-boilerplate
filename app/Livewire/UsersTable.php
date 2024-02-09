@@ -47,7 +47,7 @@ class UsersTable extends WireTable
             ),
             Column::create(
                 label: '',
-                cellView: 'backend.pages.users.actions',
+                cellView: 'backend.users.actions',
                 thStyle: ['style' => 'width: 200px']
             ),
         ];
@@ -71,6 +71,6 @@ class UsersTable extends WireTable
 
     public function render(): View
     {
-        return view('backend.pages.users.table');
+        return view('backend.users.table');
     }
 }

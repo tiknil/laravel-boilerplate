@@ -14,7 +14,7 @@ class ProfileController
 {
     public function page(): View
     {
-        return view('backend.pages.profile')->with(['user' => Auth::user()]);
+        return view('backend.profile')->with(['user' => Auth::user()]);
     }
 
     public function submit(Request $request): RedirectResponse

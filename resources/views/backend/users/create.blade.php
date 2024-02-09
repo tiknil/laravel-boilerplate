@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
       <form action="{{ route('backend.users.store') }}" method="POST">
-        @include('backend.pages.users.fields')
+        @include('backend.users.fields')
       </form>
     </div>
   </div>

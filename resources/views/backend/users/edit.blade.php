@@ -10,7 +10,7 @@
     <div class="card-body">
       <form action="{{ route('backend.users.update', ['id' => $user->id]) }}" method="POST">
         @method('patch')
-        @include('backend.pages.users.fields')
+        @include('backend.users.fields')
       </form>
     </div>
   </div>

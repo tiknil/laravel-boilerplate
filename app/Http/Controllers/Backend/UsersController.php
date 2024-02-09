@@ -14,12 +14,12 @@ class UsersController
 {
     public function page(): View
     {
-        return view('backend.pages.users.table-page');
+        return view('backend.users.table-page');
     }
 
     public function create(): View
     {
-        return view('backend.pages.users.create');
+        return view('backend.users.create');
     }
 
     public function store(Request $request): RedirectResponse
@@ -29,7 +29,7 @@ class UsersController
 
     public function edit($id): View
     {
-        return view('backend.pages.users.edit')
+        return view('backend.users.edit')
             ->with(['user' => User::findOrFail($id)]);
     }
 
