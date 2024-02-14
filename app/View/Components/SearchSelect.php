@@ -17,7 +17,6 @@ class SearchSelect extends Component
         public array $options = [],
         public string|int|null $value = null,
         public bool $required = false,
-        public bool $livewire = false,
         public bool $allowClear = false,
         public string $emptyValue = '',
         public string $placeholder = '',

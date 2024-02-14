@@ -1,3 +1,6 @@
+@php($livewire = is_subclass_of(static::class, \Livewire\Component::class))
+
+
 <div class="ss-wrapper"
      @if($livewire) wire:ignore.self data-livewire @endif
      @if(!empty($id)) id="{{ $id }}" @endif>
@@ -11,7 +14,7 @@
   <select name="{{ $name }}"
           @if($livewire) wire:key="ss-{{ $name }}" @endif
           @if($required) required @endif
-          {{ $attributes->filter(fn (string $value, string $key) => str_starts_with($key, 'wire:model')) }}
+          {{ $attributes->filter(fn ($value, $key) => str_starts_with($key, 'wire:model')) }}
           class="ss-ghost-select">
 
     <option @selected(($value ?? $emptyValue) == $emptyValue) value="{{ $emptyValue }}"></option>
@@ -27,7 +30,7 @@
   <div role="button"
        @if($livewire) wire:ignore @endif
        aria-label="{{ $placeholder }}"
-    {{ $attributes->filter(fn (string $value, string $key) => !str_starts_with($key, 'wire:model'))->merge(['class' => 'form-select ss-box']) }}
+    {{ $attributes->filter(fn ($value, $key) => !str_starts_with($key, 'wire:model'))->merge(['class' => 'form-select ss-box']) }}
   >
     <div class="text-muted ss-placeholder">@if(empty($placeholder))
         &nbsp;

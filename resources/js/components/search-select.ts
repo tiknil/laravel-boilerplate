@@ -70,8 +70,12 @@ class SearchSelect {
       if (target.classList.contains('ss-remove-icon')) {
         this.onOptionSelected(this.emptyValue)
         this.close()
-      } else if (target.classList.contains('ss-option')) {
-        this.onOptionSelected(target.getAttribute('data-key'))
+      }
+
+      const option = target.closest('.ss-option')
+
+      if (option !== null) {
+        this.onOptionSelected(option.getAttribute('data-key'))
         this.close()
       }
     })
@@ -227,3 +231,24 @@ class SearchSelect {
 document
   .querySelectorAll('div.ss-wrapper')
   .forEach((el) => new SearchSelect(el))
+
+// Check if added elements are search-select elements
+const observer = new MutationObserver(function (mutations) {
+  mutations.forEach(function (mutation) {
+    console.log(mutation)
+    mutation.addedNodes.forEach(function (addedNode) {
+      // HTMLElements are type 1
+      if (addedNode.nodeType !== 1) return
+      ;(addedNode as HTMLElement)
+        .querySelectorAll('div.ss-wrapper')
+        .forEach((el) => new SearchSelect(el))
+    })
+  })
+})
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+  attributes: false,
+  characterData: false,
+})
