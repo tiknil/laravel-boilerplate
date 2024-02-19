@@ -23,6 +23,8 @@ abstract class JsonArrayCastable implements Arrayable, Castable, JsonSerializabl
         return $this->toArray();
     }
 
+    abstract public function toArray(): array;
+
     public static function castUsing(array $arguments): CastsAttributes
     {
         $className = static::class;
