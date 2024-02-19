@@ -104,17 +104,26 @@ class SearchSelect {
       return
     }
 
-    window['Livewire'].hook('morph.updated', ({ el }) => {
-      if (el !== this.select) {
-        return
-      }
+    window['Livewire'].hook('morph.updated', ({ el }) =>
+      this.onLivewireUpdate(el),
+    )
 
-      if (this.current !== this.select.value) {
-        this.update()
-      }
+    window['Livewire'].hook('element.init', ({ el }) =>
+      /* Timeout required because element.init is launched BEFORE wire:model takes effect */
+      setTimeout(() => this.onLivewireUpdate(el), 50),
+    )
+  }
 
-      setTimeout(() => this.populateDropdown(), 50)
-    })
+  onLivewireUpdate(el: HTMLElement) {
+    if (el !== this.select) {
+      return
+    }
+
+    if (this.current !== this.select.value) {
+      this.update()
+    }
+
+    setTimeout(() => this.populateDropdown(), 50)
   }
 
   open = () => {
