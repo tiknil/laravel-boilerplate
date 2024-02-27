@@ -70,6 +70,7 @@ class SearchSelect {
       if (target.classList.contains('ss-remove-icon')) {
         this.onOptionSelected(this.emptyValue)
         this.close()
+        return
       }
 
       const option = target.closest('.ss-option')
