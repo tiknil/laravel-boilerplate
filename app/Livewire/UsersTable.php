@@ -7,10 +7,13 @@ use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use WireTable\Data\Column;
+use WireTable\Traits\ResetPageOnUpdate;
 use WireTable\WireTable;
 
 class UsersTable extends WireTable
 {
+    use ResetPageOnUpdate;
+
     public string $role = 'all';
 
     public string $search = '';
@@ -52,9 +55,8 @@ class UsersTable extends WireTable
         ];
     }
 
-    public function deleteUser(int $id)
+    public function deleteUser(int $id): void
     {
-
         $authUser = Auth::user();
 
         $user = User::find($id);

@@ -9,9 +9,10 @@ L'obiettivo è tenere aggiornato questo repo, da tenere come reference e documen
 
 ### Versioni supportate
 
-| Laravel                               | Reference                                                   |
-|---------------------------------------|-------------------------------------------------------------|
-| [v10](https://laravel.com/docs/10.x/) | [master](https://github.com/tiknil/boilerplate/tree/master) |
+| Laravel                                | Reference                                                             |
+|----------------------------------------|-----------------------------------------------------------------------|
+| [11.x](https://laravel.com/docs/11.x/) | [master](https://github.com/tiknil/boilerplate/tree/master)           |
+| [10.x](https://laravel.com/docs/10.x/) | [tag v10.0](https://github.com/tiknil/laravel-boilerplate/tree/v10.0) |
 
 > Il master è riferito alla versione più recente supportata. Le versioni precedenti sono taggate al commit relativo
 
