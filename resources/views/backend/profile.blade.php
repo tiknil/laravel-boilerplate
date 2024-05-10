@@ -15,7 +15,7 @@
 
         <div class="row gy-3">
           <div class="form-group col-md-6 col-12">
-            <label class="form-label" for="email">{{ __('backend.email') }}</label>
+            <label class="form-label" for="email">{{ __('user.email') }}</label>
             <input type="email"
                    id="email"
                    name="email"
@@ -28,7 +28,7 @@
         <div class="row mt-4">
 
           <div class="form-group col-md-6 col-12">
-            <label class="form-label" for="password">{{ __('backend.password') }}</label>
+            <label class="form-label" for="password">{{ __('user.password') }}</label>
             <input type="password"
                    id="password"
                    name="password"
@@ -42,7 +42,7 @@
           </div>
 
           <div class="form-group col-md-6 col-12">
-            <label class="form-label" for="password_confirmation">{{ __('backend.password_confirmation') }}</label>
+            <label class="form-label" for="password_confirmation">{{ __('user.password_confirmation') }}</label>
             <input type="password"
                    id="password_confirmation"
                    name="password_confirmation"

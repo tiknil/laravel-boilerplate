@@ -4,12 +4,8 @@ return [
 
     // Generici
     'save' => 'Salva',
-    'name' => 'Nome',
-    'role' => 'Ruolo',
     'search' => 'Search',
-    'email' => 'Email',
-    'password' => 'Password',
-    'password_confirmation' => 'Conferma password',
+
     'created_at' => 'Data creazione',
     'create' => 'Crea',
     'edit' => 'Modifica',
@@ -33,5 +29,5 @@ return [
     'create_user' => 'Nuovo utente',
     'edit_user' => 'Modifica utente :name',
 
-    'all_roles' => 'All roles',
+    'all_roles' => 'Tutti i ruoli',
 ];

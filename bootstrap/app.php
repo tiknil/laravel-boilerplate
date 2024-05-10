@@ -1,55 +1,99 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Create The Application
-|--------------------------------------------------------------------------
-|
-| The first thing we will do is create a new Laravel application instance
-| which serves as the "glue" for all the components of Laravel, and is
-| the IoC container for the system binding all of the various parts.
-|
-*/
+use App\Http\Responses\Api\ApiError;
+use App\Http\Responses\Api\ErrorResponse;
+use App\Providers\AppServiceProvider;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
+use Laravel\Sanctum\Exceptions\MissingAbilityException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-$app = new Illuminate\Foundation\Application(
-    $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
-);
+return Application::configure(basePath: dirname(__DIR__))
+    ->withProviders([
+        \Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
+    ])
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        api: __DIR__.'/../routes/api.php',
+        commands: __DIR__.'/../routes/console.php',
+        // channels: __DIR__.'/../routes/channels.php',
+        health: '/up',
+    )
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->redirectGuestsTo(fn () => route('login'));
+        $middleware->redirectUsersTo(AppServiceProvider::HOME);
 
-/*
-|--------------------------------------------------------------------------
-| Bind Important Interfaces
-|--------------------------------------------------------------------------
-|
-| Next, we need to bind some important interfaces into the container so
-| we will be able to resolve them when needed. The kernels serve the
-| incoming requests to this application from both the web and CLI.
-|
-*/
+        $middleware->throttleApi();
 
-$app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    App\Http\Kernel::class
-);
+        $middleware->alias([
+            'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
+            'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
+        ]);
+    })
+    ->withExceptions(function (Exceptions $exceptions) {
 
-$app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
-);
+        /*
+         * Alcune eccezioni vengono generate direttamente da Laravel.
+         * In caso di richieste API, usiamo la risposta di errore standard
+         */
 
-$app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
-);
+        // Errore 404
+        $exceptions->render(function (NotFoundHttpException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return ErrorResponse::json(
+                    404,
+                    ApiError::HttpNotFound,
+                    'Invalid endpoint'
+                );
+            }
+        });
 
-/*
-|--------------------------------------------------------------------------
-| Return The Application
-|--------------------------------------------------------------------------
-|
-| This script returns the application instance. The instance is given to
-| the calling script so we can separate the building of the instances
-| from the actual running of the application and sending responses.
-|
-*/
+        // Modello non trovato con ::findOrFail
+        $exceptions->render(function (ModelNotFoundException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return ErrorResponse::json(
+                    404,
+                    ApiError::ResourceNotFound,
+                    'Invalid requested resource'
+                );
+            }
+        });
 
-return $app;
+        // Errore 405
+        $exceptions->render(function (MethodNotAllowedHttpException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return ErrorResponse::json(
+                    405,
+                    ApiError::InvalidMethod,
+                    "Invalid method {$request->method()}"
+                );
+            }
+        });
+
+        // Unauthorized
+        $exceptions->render(function (AuthenticationException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return ErrorResponse::unauthorized();
+            }
+        });
+
+        // Sanctum wrong token
+        $exceptions->render(function (MissingAbilityException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return ErrorResponse::forbidden('Wrong token type');
+            }
+        });
+
+        $exceptions->shouldRenderJsonWhen(function (Request $request, Throwable $e) {
+            if ($request->is('api/*')) {
+                return true;
+            }
+
+            return $request->expectsJson();
+        });
+    })->create();

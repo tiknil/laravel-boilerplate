@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::post('auth/login', [Auth\TokensController::class, 'login']);
 Route::post('auth/reset-password', [Auth\ResetPasswordRequest::class, 'resetRequest']);
 
-Route::group(['middleware' => ['auth:sanctum', 'abilities:refresh']], function () {
+Route::middleware('auth:sanctum', 'abilities:refresh')->group(function () {
     Route::post('auth/refresh', [Auth\TokensController::class, 'refresh']);
 });
 
-Route::group(['middleware' => ['auth:sanctum', 'abilities:access']], function () {
+Route::middleware('auth:sanctum', 'abilities:access')->group(function () {
     Route::post('auth/logout', [Auth\TokensController::class, 'logout']);
 
     Route::get('user', [Api\UserController::class, 'user']);
