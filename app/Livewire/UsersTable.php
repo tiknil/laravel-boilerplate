@@ -35,12 +35,12 @@ class UsersTable extends WireTable
                 sort: true
             ),
             Column::create(
-                label: __('backend.email'),
+                label: __('user.email'),
                 key: 'email',
                 sort: true
             ),
             Column::create(
-                label: __('backend.role'),
+                label: __('user.role'),
                 key: 'role',
                 map: fn ($user) => $user->role->label(),
             ),

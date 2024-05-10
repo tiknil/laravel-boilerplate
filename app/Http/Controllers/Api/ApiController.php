@@ -12,7 +12,7 @@ abstract class ApiController extends Controller
     public function validateApiRequest(Request $request, array $rules): array
     {
         try {
-            return parent::validate($request, $rules);
+            return $request->validate($rules);
         } catch (ValidationException $exception) {
             ErrorResponse::invalidRequest(
                 'The request either misses some requested parameters or contains invalid ones',
