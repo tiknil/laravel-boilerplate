@@ -1,4 +1,4 @@
-$font-size-root: 11pt;
+$font-size-root: 10.5pt;
 $grid-gutter-width: 1rem;
 $grid-gutter-height: 1rem;
 
@@ -6,9 +6,6 @@ $grid-gutter-height: 1rem;
 
 // Altrimenti bisogna pubblicare i file del font ed è complesso
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css");
-
-@import "./components/multi-select";
-@import "./components/search-select";
 
 a {
   text-decoration: inherit;

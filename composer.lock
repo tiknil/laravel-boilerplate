@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82fe7a7dc1655af3eb5d8d1f13a42009",
+    "content-hash": "e5573eaa8aef3ab9b653d2810122a331",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -6869,6 +6869,71 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.2.7"
             },
             "time": "2023-12-08T13:03:43+00:00"
+        },
+        {
+            "name": "tiknil/bs-blade-forms",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tiknil/bs-blade-forms.git",
+                "reference": "34f175a88f9e03f00083de320b2c32a6d71d2d47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tiknil/bs-blade-forms/zipball/34f175a88f9e03f00083de320b2c32a6d71d2d47",
+                "reference": "34f175a88f9e03f00083de320b2c32a6d71d2d47",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "php": "^8.1|^8.2|^8.3"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.7",
+                "mockery/mockery": "^1.6",
+                "orchestra/testbench": "^9.0",
+                "pestphp/pest": "^2.34",
+                "pestphp/pest-plugin-laravel": "^2.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tiknil\\BsBladeForms\\BsBladeFormsServiceProvider"
+                    ],
+                    "aliases": {
+                        "BsBladeForms": "Tiknil\\BsBladeForms\\BsBladeFormsFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tiknil\\BsBladeForms\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Giorgio Balduzzi",
+                    "email": "balduzzi.giorgio@tiknil.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Collection of blade components for building form using bootstrap",
+            "homepage": "https://github.com/tiknil/bs-blade-forms",
+            "keywords": [
+                "bs-blade-forms",
+                "tiknil"
+            ],
+            "support": {
+                "issues": "https://github.com/tiknil/bs-blade-forms/issues",
+                "source": "https://github.com/tiknil/bs-blade-forms/tree/v0.2.0"
+            },
+            "time": "2024-07-22T07:48:11+00:00"
         },
         {
             "name": "tiknil/wire-table",

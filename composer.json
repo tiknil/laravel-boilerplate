@@ -20,6 +20,7 @@
         "league/flysystem-aws-s3-v3": "^3.13",
         "livewire/livewire": "^3.3",
         "spatie/laravel-backup": "^8.6",
+        "tiknil/bs-blade-forms": "^0.2.0",
         "tiknil/wire-table": "^1.5.0"
     },
     "require-dev": {

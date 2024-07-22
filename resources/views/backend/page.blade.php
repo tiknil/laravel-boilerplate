@@ -11,6 +11,8 @@
   @include('utils.livewire-setup')
 
   @stack('style')
+
+  {{ BsBladeForms::assets() }}
 </head>
 <body>
 
