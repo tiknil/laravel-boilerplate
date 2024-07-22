@@ -11,9 +11,11 @@
 
   @push('scripts')
     <script type="module">
-      Livewire.on('toast', ({toast}) => {
-        window.showToast(toast.type, toast.message)
-      })
+      if (window.Livewire !== undefined) {
+        Livewire.on('toast', ({toast}) => {
+          window.showToast(toast.type, toast.message)
+        })
+      }
     </script>
   @endpush
 
