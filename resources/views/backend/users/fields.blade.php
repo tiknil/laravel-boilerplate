@@ -1,27 +1,19 @@
-@csrf
+@php
+  use \App\Enums\UserRole;
+@endphp
 
 <div class="row gy-3">
   <div class="form-group col-md-6 col-12">
-    <label class="form-label" for="email">{{ __('user.email') }}</label>
-    <input type="email"
-           id="email"
-           name="email"
-           class="form-control"
-           value="{{ old('email', $user->email ?? '') }}"
-           required/>
+
+    <x-bs::input label="{{ __('user.email') }}" name="email" required/>
+
   </div>
+
   @can('admin')
     <div class="form-group col-md-6 col-12">
 
-      <label class="form-label" for="role">{{ __('user.role') }}</label>
+      <x-bs::select label="{{ __('user.role') }}" name="role" :options="UserRole::toOptions()" required/>
 
-      <select name="role" id="role" class="form-select">
-        @foreach(\App\Enums\UserRole::cases() as $role)
-          <option value="{{ $role->name }}" @selected(old('role', $user->role ?? '') == $role)>
-            {{ $role->label() }}
-          </option>
-        @endforeach
-      </select>
     </div>
   @endcan
 
@@ -30,16 +22,16 @@
 <div class="row mt-4">
 
   <div class="form-group col-md-6 col-12">
-    <label class="form-label" for="password">{{ __('user.password') }}</label>
-    <input type="password"
-           id="password"
-           name="password"
-           class="form-control"
-           minlength="8"
-           autocomplete="new-password"
-           @if(!isset($user)) required @endif
-           value="{{ old('password', '') }}"
+
+    <x-bs::input
+      type="password"
+      label="{{ __('user.password') }}"
+      name="password"
+      :required="!isset($user)"
+      minlength="8"
+      autocomplete="new-password"
     />
+
     <small class="text-muted">
       @if(isset($user))
         {{ __('backend.password_update_hint') }}
@@ -48,13 +40,14 @@
   </div>
 
   <div class="form-group col-md-6 col-12">
-    <label class="form-label" for="password_confirmation">{{ __('user.password_confirmation') }}</label>
-    <input type="password"
-           id="password_confirmation"
-           name="password_confirmation"
-           minlength="8"
-           class="form-control"
+
+    <x-bs::input
+      type="password"
+      label="{{ __('user.password_confirmation') }}"
+      name="password_confirmation"
+      minlength="8"
     />
+
   </div>
 </div>
 

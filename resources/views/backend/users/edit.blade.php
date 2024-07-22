@@ -8,10 +8,9 @@
       <b>{{ __('backend.edit_user', ['name' => $user->name])  }}</b>
     </div>
     <div class="card-body">
-      <form action="{{ route('backend.users.update', ['id' => $user->id]) }}" method="POST">
-        @method('patch')
+      <x-bs::form :model="$user" action="{{ route('backend.users.update', ['id' => $user->id]) }}" method="PATCH">
         @include('backend.users.fields')
-      </form>
+      </x-bs::form>
     </div>
   </div>
 @endsection

@@ -8,9 +8,10 @@
       <b>{{ __('backend.create_user') }}</b>
     </div>
     <div class="card-body">
-      <form action="{{ route('backend.users.store') }}" method="POST">
+
+      <x-bs::form action="{{ route('backend.users.store') }}" method="POST">
         @include('backend.users.fields')
-      </form>
+      </x-bs::form>
     </div>
   </div>
 @endsection

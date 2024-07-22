@@ -14,7 +14,7 @@ class UsersTable extends WireTable
 {
     use ResetPageOnUpdate;
 
-    public string $role = 'all';
+    public string $role = '';
 
     public string $search = '';
 
@@ -25,7 +25,7 @@ class UsersTable extends WireTable
 
     public function filter(Builder $query): Builder
     {
-        return $query->when($this->role !== 'all', fn (Builder $q) => $q->where('role', $this->role))
+        return $query->when($this->role !== '', fn (Builder $q) => $q->where('role', $this->role))
             ->when($this->search !== '', fn (Builder $q) => $q->where('email', 'like', '%'.$this->search.'%'));
     }
 

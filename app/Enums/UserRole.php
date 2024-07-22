@@ -4,6 +4,8 @@ namespace App\Enums;
 
 enum UserRole
 {
+    use EnumOptions;
+
     case Admin;
 
     case User;
