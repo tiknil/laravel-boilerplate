@@ -25,8 +25,8 @@ class UsersTable extends WireTable
 
     public function filter(Builder $query): Builder
     {
-        return $query->when($this->role !== '', fn (Builder $q) => $q->where('role', $this->role))
-            ->when($this->search !== '', fn (Builder $q) => $q->where('email', 'like', '%'.$this->search.'%'));
+        return $query->when($this->role !== '', fn(Builder $q) => $q->where('role', $this->role))
+            ->when($this->search !== '', fn(Builder $q) => $q->where('email', 'like', '%' . $this->search . '%'));
     }
 
     public function columns(): array
@@ -45,7 +45,7 @@ class UsersTable extends WireTable
             Column::create(
                 label: __('user.role'),
                 key: 'role',
-                map: fn ($user) => $user->role->label(),
+                map: fn($user) => $user->role->label(),
             ),
             Column::create(
                 label: '',
@@ -70,6 +70,7 @@ class UsersTable extends WireTable
 
     public function render(): View
     {
-        return view('backend.users.table');
+        return view('backend.users.table')
+            ->title(__('backend.users'));
     }
 }

@@ -1,10 +1,4 @@
-@extends('backend.page')
-
-@section('title', __('backend.profile'))
-
-@section('page-id', 'profile')
-
-@section('content')
+<x-backend::layouts.page :title="__('backend.profile')" page-id="profile">
   <div class="card">
     <div class="card-header d-flex flex-row justify-content-between align-items-center">
       <b>{{ __('backend.profile') }}</b>
@@ -61,5 +55,4 @@
       </form>
     </div>
   </div>
-@endsection
-
+</x-backend::layouts.page>

@@ -10,7 +10,6 @@
         <i class="nav-icon bi bi-people"></i> {{ __('backend.users') }}
       </a>
     </span>
-    
   </nav>
 </div>
 

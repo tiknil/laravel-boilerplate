@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import {computed, ref, watch} from 'vue'
 
-const props = withDefaults(defineProps<{ factor: number }>(), { factor: 2 })
+const props = withDefaults(defineProps<{ factor: number }>(), {factor: 2})
 
 const count = ref(0)
 const isOdd = ref(false)

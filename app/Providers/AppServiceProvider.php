@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Enums\UserRole;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
@@ -36,13 +37,17 @@ class AppServiceProvider extends ServiceProvider
     {
         URL::forceScheme('https');
 
+        Blade::anonymousComponentNamespace('backend', 'backend');
+        Blade::anonymousComponentNamespace('frontend', 'frontend');
+        Blade::anonymousComponentNamespace('auth', 'auth');
+
         $this->bootAuth();
         $this->bootRoute();
     }
 
     public function bootAuth(): void
     {
-        Gate::define('admin', fn ($user) => $user->role === UserRole::Admin);
+        Gate::define('admin', fn($user) => $user->role === UserRole::Admin);
     }
 
     public function bootRoute(): void
