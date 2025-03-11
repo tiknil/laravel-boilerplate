@@ -2,13 +2,6 @@
 
 ----
 
-### Backup
-
-[`spatie/laravel-backup`](https://spatie.be/docs/laravel-backup/v8/introduction) è installato e configurato per salvare
-il backup giornaliero su S3,
-basta configurare le credenziali S3 nell'env e abilitare
-lo [scheduling di laravel](https://laravel.com/docs/10.x/scheduling)
-
 ### Bugsnag
 
 Per abilitare il logging su bugsnag in production è sufficiente impostare la variabile `BUGSNAG_API_KEY` nell'env

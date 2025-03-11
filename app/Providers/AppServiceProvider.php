@@ -47,6 +47,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function bootAuth(): void
     {
+        Gate::define('developer', fn($user) => $user->email === 'info@tiknil.com');
         Gate::define('admin', fn($user) => $user->role === UserRole::Admin);
     }
 

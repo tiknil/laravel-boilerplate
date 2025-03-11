@@ -20,58 +20,33 @@ Per ottimizzare gli autocompletamenti e la ricerca, conviene segnalare PHPStorm 
 ## Formattazione codice
 
 Vengono predisposti i tool per la formattazione del codice PHP (tramite [Pint](https://laravel.com/docs/10.x/pint)) e
-JS/TS (tramite ESLint +
-Prettier).
+JS/TS (tramite ESLint + Prettier).
 
 Serve comunque configurare PHPStorm per utilizzare questi tool in automatico al salvataggio di un file.
 
 #### Pint
 
-[Fonte](https://gilbitron.me/blog/running-laravel-pint-in-phpstorm)
+PHPStorm supporta Pint come formatter di codice in automatic. Lo si può abilitare nelle impostazioni PHPStorm:
 
-`Preferences (⌘,) > Tools > Actions on save`
+`Preferences (⌘,) > Quality Tools > Pint`
 
-Aggiungere un nuovo file watcher di nome pint con questi parametri:
+Per fare in moda che i file venga automaticamente formattati al salvaggio, è necessario abilitare la formattazione di
+PHPStorm per i file PHP. Vedi l'opzione "Reformat code" in:
 
-- Program: `$ProjectFileDir$/vendor/bin/pint`
-- Arguments: `$FileRelativePath$`
-- Output paths to refresh: `$FileRelativePath$`
-- Working directory: `$ProjectFileDir$`
+```
+Preferences (⌘,) > Tools > Actions on save
+```
 
-Nelle opzioni avanzate assicurarsi che tutti i flag siano disattivati.
+> è consigliato abilitare il "Reformat code" per tutti i file
 
-Dopo aver creare il file watcher lo si può rendere `global`, per evitare di doverlo ricreare in ogni progetto
+#### ESLint e prettier
 
-<p align="center">
-<a href="images/phpstorm_pint_watcher.png" target="_blank"><img src="images/phpstorm_pint_watcher.png" height="250" alt="PHPStorm screenshot"></a>
-<a href="images/phpstorm_watchers.png" target="_blank"><img src="images/phpstorm_watchers.png" height="250" alt="PHPStorm screenshot"></a>
-<a href="images/phpstorm_actions.png" target="_blank"><img src="images/phpstorm_actions.png" height="250" alt="PHPStorm screenshot"></a>
-</p>
+`Preferences (⌘,) > Javascript > Code Quality Tools > ESlint`
 
-#### ESLint
+Abitare la configurazione automatica e l'esecuzione di `eslint --fix` ad ogni salvataggio di file.
 
-`Preferences (⌘,) > Languages & Frameworks > Languages > Code Quality Tools > ESlint`
+`Preferences (⌘,) > Javascript > Prettier`
 
-Abitare la configurazione automatica e l'esecuzione di `eslint --fix` ad ogni salvataggio
-
-<p align="center">
-<a href="images/phpstorm_eslint.png" target="_blank"><img src="images/phpstorm_eslint.png" height="300" alt="PHPStorm screenshot"></a>
-</p>
-
-#### Altri file
-
-PHPStorm supporta in automatico anche il refactoring dei file di ogni altro tipo (blade, json, yaml).
-Utile per sistemare in automatico identazioni e spazi.
-
-`Preferences (⌘,) > Tools > Actions on save`
-
-Abilitare `Reformat code` selezionando i linguaggi desiderati. Escludere `PHP`, `Javascript` e `Typescript` per evitare
-conflitti con pint ed ESLint
-
-<p align="center">
-<a href="images/phpstorm_reformat.png" target="_blank"><img src="images/phpstorm_reformat.png" height="300" alt="PHPStorm screenshot"></a>
-</p>
-
-----
+Abitare la configurazione automatica e l'esecuzione ad ogni salvataggio di file.
 
 [Torna all'indice](README.md)

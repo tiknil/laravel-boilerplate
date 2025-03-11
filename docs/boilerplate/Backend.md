@@ -50,9 +50,12 @@ Il messaggio verrà mostrato all'utente alla *successiva* pagina visualizzata.
 showToast('error', 'Si è verificato un errore')
 ```
 
-#### Multi select
+NB i toast funzionano automaticamente anche tra aggiornamenti di componenti Livewire
 
-=> TODO
+#### Forms
+
+La libreria [bs-blade-forms](https://github.com/tiknil/wire-table) è inclusa e pronta all'uso, vedi il form di modifica
+utente per un esempio
 
 #### Wire Table
 

@@ -4,9 +4,8 @@
       <b>{{ __('backend.create_user') }}</b>
     </div>
     <div class="card-body">
-
       <x-bs::form action="{{ route('backend.users.store') }}" method="POST">
-        <x-backend::users.fields/>
+        <x-backend::users.fields />
       </x-bs::form>
     </div>
   </div>
