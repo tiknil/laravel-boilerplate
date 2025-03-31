@@ -1,11 +1,16 @@
-@import 'vars';
+@use 'vars';
 
-@import url("https://fonts.googleapis.com/css2?family=#{$gFontName}:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap");
-// @import url("https://fonts.googleapis.com/css2?family=#{$handGFontName}:wght@400;600&display=swap");
+@use "sass:meta";
 
-@import 'layout';
-@import 'utils';
+@use 'layout';
+@use 'utils';
 
-@import "base";
+@use "base";
 
 // Component, pages, etc etc..
+@use "components/buttons";
+@use "components/footer";
+@use "components/header";
+
+@import url("https://fonts.googleapis.com/css2?family=#{meta.inspect(vars.$gFontName)}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=#{$handGFontName}:wght@400;600&display=swap");

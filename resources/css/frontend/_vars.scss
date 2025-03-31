@@ -1,15 +1,28 @@
-$primary: #005578;
-$text: #005578;
-$secondary: #afca0b;
-$accent: #e55934;
-$background: #e7e8e8;
-$white: #fff;
-$black: #000;
+// Colors
+$colors: (
+  "primary": #005578,
+  "text": #222,
+  "secondary": #afca0b,
+  "accent": #e55934,
+  "background": #e7e8e8,
+  "white": #fff,
+  "black": #000,
+);
 
+// Font weights
 $fw-light: 300;
 $fw-regular: 400;
+$fw-medium: 500;
 $fw-semibold: 600;
 $fw-bold: 700;
+
+// Spacings
+$space-xxs: 2px;
+$space-xs: 4px;
+$space-s: 8px;
+$space-m: 16px;
+$space-l: 24px;
+$space-xl: 32px;
 
 // Layout Breakpoints (see _layout.scss)
 $xs: 400px;
@@ -17,8 +30,7 @@ $sm: 760px;
 $md: 1100px;
 $lg: 1360px;
 
-$contentWidth: 1500px;
-
+// Fonts
 $gFontName: 'Montserrat';
 $font: $gFontName, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
@@ -26,18 +38,22 @@ $handGFontName: 'Tangerine';
 $handwritingFont: $handGFontName, cursive;
 
 :root {
-  --primary: #{$primary};
-  --secondary: #{$secondary};
-  --accent: #{$accent};
-  --text: #{$text};
-  --background: #{$background};
-  --white: #{$white};
-  --black: #{$black};
+  @each $name, $val in $colors {
+    --#{$name}: #{$val}
+  }
 
   --fw-light: #{$fw-light};
   --fw-reg: #{$fw-regular};
+  --fw-m: #{$fw-medium};
   --fw-sb: #{$fw-semibold};
   --fw-b: #{$fw-bold};
+
+  --spacing-xxs: #{$space-xxs};
+  --spacing-xs: #{$space-xs};
+  --spacing-s: #{$space-s};
+  --spacing-m: #{$space-m};
+  --spacing-l: #{$space-l};
+  --spacing-xl: #{$space-xl};
 
   --xs: #{$xs};
   --sm: #{$sm};

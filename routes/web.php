@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/login');
-
 // Auth
 Route::get('/logout', [Auth\LoginController::class, 'logout'])->name('auth.logout');
 
+// Frontend
+Route::view('/', 'frontend.home')->name('frontend.home');
+
+// Backend
 Route::middleware('auth:web')->prefix('/backend')->group(function () {
 
     Route::redirect('/', '/backend/users');

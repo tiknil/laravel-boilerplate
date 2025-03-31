@@ -9,6 +9,8 @@ export default defineConfig({
         'resources/css/auth/main.scss',
         'resources/css/backend/main.scss',
         'resources/js/backend/main.ts',
+        'resources/js/frontend/main.ts',
+        'resources/css/frontend/main.scss',
       ],
       refresh: true,
     }),
@@ -40,7 +42,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         // Warning di bootstrap, vedi: https://github.com/twbs/bootstrap/issues/40962
-        silenceDeprecations: ['color-functions', 'mixed-decls', 'global-builtin', 'import'],
+        silenceDeprecations: ['color-functions', 'mixed-decls', 'global-builtin'],
       },
     },
   },

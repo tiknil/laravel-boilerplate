@@ -1,3 +1,5 @@
+@use 'vars';
+
 /*
  * Mixins per modificare le regole di layout a varie dimensioni
  * es. per applicare uno stile su dispositivi piccoli all'elemento #title:
@@ -11,14 +13,10 @@
  */
 
 /*
- * I Breakpoint sono definiti del file _vars.scss
- */
-
-/*
  * XS
  */
 @mixin xs-only {
-  @media (max-width: #{$xs - 1px}) {
+  @media (max-width: #{vars.$xs - 1px}) {
     @content;
   }
 }
@@ -27,39 +25,40 @@
  * SM
  */
 @mixin sm-down {
-  @media (max-width: #{$sm - 1px}) {
+  @media (max-width: #{vars.$sm - 1px}) {
     @content;
   }
 }
 
 @mixin sm-only {
-  @media (min-width: #{$xs}) and (max-width: #{$sm - 1px}) {
+  @media (min-width: #{vars.$xs}) and (max-width: #{vars.$sm - 1px}) {
     @content;
   }
 }
 
 @mixin sm-up {
-  @media (min-width: #{$xs}) {
+  @media (min-width: #{vars.$xs}) {
     @content;
   }
 }
+
 /*
  * MD
  */
 @mixin md-down {
-  @media (max-width: #{$md - 1px}) {
+  @media (max-width: #{vars.$md - 1px}) {
     @content;
   }
 }
 
 @mixin md-only {
-  @media (min-width: #{$sm}) and (max-width: #{$md - 1px}) {
+  @media (min-width: #{vars.$sm}) and (max-width: #{vars.$md - 1px}) {
     @content;
   }
 }
 
 @mixin md-up {
-  @media (min-width: #{$sm}) {
+  @media (min-width: #{vars.$sm}) {
     @content;
   }
 }
@@ -68,19 +67,19 @@
  * LG
  */
 @mixin lg-down {
-  @media (max-width: #{$lg - 1px}) {
+  @media (max-width: #{vars.$lg - 1px}) {
     @content;
   }
 }
 
 @mixin lg-only {
-  @media (min-width: #{$md}) and (max-width: #{$lg - 1px}) {
+  @media (min-width: #{vars.$md}) and (max-width: #{vars.$lg - 1px}) {
     @content;
   }
 }
 
 @mixin lg-up {
-  @media (min-width: #{$md}) {
+  @media (min-width: #{vars.$md}) {
     @content;
   }
 }
@@ -89,10 +88,11 @@
  * XL
  */
 @mixin xl-only {
-  @media (min-width: #{$lg}) {
+  @media (min-width: #{vars.$lg}) {
     @content;
   }
 }
+
 /*
  * Classi per controllare la visibilità degli elementi a vari breakpoints
  */

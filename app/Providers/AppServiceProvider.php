@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,9 +27,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
-    }
+    public function register(): void {}
 
     /**
      * Bootstrap any application services.
@@ -47,8 +46,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function bootAuth(): void
     {
-        Gate::define('developer', fn($user) => $user->email === 'info@tiknil.com');
-        Gate::define('admin', fn($user) => $user->role === UserRole::Admin);
+        Gate::define('developer', fn ($user) => Str::endsWith($user->email, '@tiknil.com'));
+        Gate::define('admin', fn ($user) => $user->role === UserRole::Admin);
     }
 
     public function bootRoute(): void

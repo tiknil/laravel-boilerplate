@@ -1,0 +1,40 @@
+.btn {
+  // per creare variante, basta personalizzare queste variabili in una sottoclasse
+  --btn-color: white;
+  --btn-bg-color: var(--primary);
+  --btn-padding-h: var(--spacing-l);
+  --btn-padding-v: var(--spacing-s);
+  --btn-radius: var(--spacing-s);
+  --btn-fw: var(--fw-m);
+
+  --btn-border-width: 1px;
+  --btn-border-color: var(--btn-bg-color);
+
+
+  padding: var(--btn-padding-v) var(--btn-padding-h);
+  border-radius: var(--btn-radius);
+
+  font-weight: var(--btn-fw-m);
+  text-align: center;
+  cursor: pointer;
+
+  color: var(--btn-color);
+  background-color: var(--btn-bg-color);
+  border: var(--btn-border-width) solid var(--btn-border-color);
+  outline: var(--btn-bg-color);
+
+  &:hover {
+    text-decoration: none !important;
+  }
+
+  &.btn-sm {
+    --btn-padding-h: var(--spacing-m);
+    --btn-padding-v: var(--spacing-xs);
+    font-size: .9rem;
+  }
+
+  &:disabled {
+    opacity: 0.25;
+    pointer-events: none;
+  }
+}
