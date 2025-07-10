@@ -5,6 +5,9 @@ namespace App\Enums;
 use BackedEnum;
 use UnitEnum;
 
+/**
+ * Converte l'enum in un dizionario [valore] -> [label] tramite la funzione toOptions().
+ */
 trait EnumOptions
 {
     public static function toOptions(): array

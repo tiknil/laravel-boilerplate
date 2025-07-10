@@ -1,41 +1,44 @@
 @use 'vars';
 
-/*
- * Text utils
- */
+// Utility colore
+@each $name, $color in vars.$colorUtils {
+  .text-#{$name},
+  .svg-#{$name} {
+    color: $color;
+  }
 
-.fw-l {
-  font-weight: var(--fw-light);
-}
+  .bg-#{$name} {
+    background-color: $color;
+  }
 
-.fw-r {
-  font-weight: var(--fw-reg);
-}
-
-.fw-m {
-  font-weight: var(--fw-m);
-}
-
-.fw-sb {
-  font-weight: var(--fw-sb);
-}
-
-.fw-b {
-  font-weight: var(--fw-b);
-}
-
-@each $name, $color in vars.$colors {
-  .text-#{$name}, .svg-#{$name} {
-    color: var(--#{$name});
+  .border-#{$name} {
+    border-width: 1px;
+    border-style: solid;
+    border-color: $color;
   }
 }
 
-.upper {
-  text-transform: uppercase;
+// Text utils
+@each $i in l, r, m, sb, b {
+  .fw-#{$i} {
+    font-weight: var(--fw-#{$i});
+  }
 }
 
-.text-center {
-  text-align: center;
+@each $i in start, center, end {
+  .text-#{$i} {
+    text-align: #{$i};
+  }
+}
+
+@each $i in sm, lg, xl {
+  .text-#{$i} {
+    font-size: var(--font-#{$i});
+  }
+}
+
+.text-base {
+  font-size: 1rem;
 }
 
 .ellipse {
@@ -69,16 +72,50 @@
   justify-content: center;
 }
 
-.flex {
-  flex: 1
+.justify-content-start {
+  justify-content: start;
 }
 
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.justify-content-evenly {
+  justify-content: space-evenly;
+}
+
+.justify-content-end {
+  justify-content: start;
+}
+
+.align-items-start {
+  align-items: start;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-baseline {
+  align-items: baseline;
+}
+
+.align-items-end {
+  align-items: start;
+}
+
+.flex {
+  flex: 1;
+}
 
 /*
  * Margins and paddings
  */
-@each $i in xxs, xs, s, m, l, xl, xl {
-
+@each $i in xxs, xs, sm, md, lg, xl {
   .g-#{$i} {
     gap: var(--spacing-#{$i});
   }
@@ -144,4 +181,8 @@
     @extend .pv-#{$i};
     @extend .ph-#{$i};
   }
+}
+
+.rounded {
+  border-radius: var(--border-radius);
 }

@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum UserRole
 {
-    use EnumOptions;
+    use EnumOptions, WithTryMethods;
 
     case Admin;
 
