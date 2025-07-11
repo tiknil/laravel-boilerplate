@@ -1,8 +1,8 @@
 services:
   nginx:
-    image: "nginx:alpine-slim"
+    image: 'nginx:alpine-slim'
     expose:
-      - "80"
+      - '80'
     volumes:
       - ..:/var/www
       - ./logs/nginx:/var/log/nginx
@@ -16,12 +16,12 @@ services:
     build:
       context: ./php-fpm
     expose:
-      - "9000"
+      - '9000'
     volumes:
       - ../:/var/www
 
   mysql:
-    image: "mysql:8.0"
+    image: 'mysql:8.0'
     environment:
       MYSQL_DATABASE: dbname
       MYSQL_USER: dbuser
@@ -34,6 +34,19 @@ services:
       - 3306
     ports:
       - ${MAC_DB_PORT}:3306
+
+  # postgres:
+  #     image: "postgres:15-alpine"
+  #     environment:
+  #         POSTGRES_DB: dbname
+  #         POSTGRES_USER: dbuser
+  #         POSTGRES_PASSWORD: dbpsw
+  #     volumes:
+  #         - postgres:/var/lib/postgresql/data
+  #     expose:
+  #         - 5432
+  #     ports:
+  #         - ${MAC_DB_PORT}:5432
 
   # redis:
   #   image: 'redis:alpine'
@@ -50,6 +63,8 @@ networks:
 
 volumes:
   mysql:
-    driver: "local"
+    driver: 'local'
+  # postgres:
+  #   driver: "local"
   # redis:
   #   driver: "local"
