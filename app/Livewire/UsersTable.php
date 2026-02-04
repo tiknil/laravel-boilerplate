@@ -25,8 +25,8 @@ class UsersTable extends WireTable
 
     public function filter(Builder $query): Builder
     {
-        return $query->when($this->role !== '', fn(Builder $q) => $q->where('role', $this->role))
-            ->when($this->search !== '', fn(Builder $q) => $q->where('email', 'like', '%' . $this->search . '%'));
+        return $query->when($this->role !== '', fn (Builder $q) => $q->where('role', $this->role))
+            ->when($this->search !== '', fn (Builder $q) => $q->where('email', 'like', '%'.$this->search.'%'));
     }
 
     public function columns(): array
@@ -42,17 +42,23 @@ class UsersTable extends WireTable
                 key: 'email',
                 sort: true
             ),
-            Column::create(
-                label: __('user.role'),
-                key: 'role',
-                map: fn($user) => $user->role->label(),
-            ),
-            Column::create(
-                label: '',
-                cellView: 'backend.users.actions',
-                thStyle: ['style' => 'width: 200px']
-            ),
+            Column::create(label: __('user.role')),
+            Column::create(label: '', thStyle: ['style' => 'width: 200px']),
         ];
+    }
+
+    public function render(): View
+    {
+        return view('backend.users.table')
+            ->title(__('backend.users'));
+    }
+
+    /**
+     * @param  User  $user
+     */
+    public function renderRow($user): View
+    {
+        return view('backend.users.table-row')->with(['user' => $user]);
     }
 
     public function deleteUser(int $id): void
@@ -66,11 +72,5 @@ class UsersTable extends WireTable
         } else {
             $user->delete();
         }
-    }
-
-    public function render(): View
-    {
-        return view('backend.users.table')
-            ->title(__('backend.users'));
     }
 }

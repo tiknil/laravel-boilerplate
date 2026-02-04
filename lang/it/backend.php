@@ -4,7 +4,7 @@ return [
 
     // Generici
     'save' => 'Salva',
-    'search' => 'Search',
+    'search' => 'Cerca',
 
     'created_at' => 'Data creazione',
     'create' => 'Crea',
