@@ -10,3 +10,9 @@
  * SET SESSION sql_require_primary_key=0
  */
 GRANT SESSION_VARIABLES_ADMIN ON *.* TO 'dbuser'@'%';
+
+
+CREATE DATABASE IF NOT EXISTS testing_db;
+GRANT ALL ON *.* TO 'dbuser'@'%';
+GRANT ALL ON *.* TO 'root'@'%';
+FLUSH PRIVILEGES;

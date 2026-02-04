@@ -1,5 +1,10 @@
 <?php
 
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -10,11 +15,36 @@
 | need to change it using the "uses()" function to bind a different classes or traits.
 |
 */
-
 uses(
-    Tests\TestCase::class,
-    // Illuminate\Foundation\Testing\RefreshDatabase::class,
-)->in('Feature');
+    TestCase::class,
+    DatabaseTransactions::class,
+)->beforeEach(function () {
+    // Imposto file storage come fake, per evitare inconsistenza con i file in locale
+    Storage::fake('s3');
+    Storage::fake('local');
+})->afterEach(function () {
+    // Svuota redis da qualsiasi dato vi è stato salvato durante i test
+    // Redis::flushdb();
+})->in('Feature', 'Unit');
+
+/*
+|--------------------------------------------------------------------------
+| Hooks
+|--------------------------------------------------------------------------
+|
+| Pest fornisce diversi hook per eseguire codice in specifici momenti
+| del ciclo di vita dei test.
+|
+*/
+
+// Esegui questo codice UNA SOLA VOLTA prima di tutti i test della suite
+beforeAll(function () {
+    echo "Before all is working now!\n";
+});
+
+afterAll(function () {
+    echo "After all is working now!\n";
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +56,11 @@ uses(
 | to assert different things. Of course, you may extend the Expectation API at any time.
 */
 
+/*
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);
 });
+*/
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +72,16 @@ expect()->extend('toBeOne', function () {
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
-
-function something()
+/**
+ * Permette di accedere al valore di proprietà private di un oggetto/instanza
+ *
+ * @throws ReflectionException
+ */
+function getReflectedProperty($object, $property): mixed
 {
-    // ..
+    $reflectedClass = new \ReflectionClass($object);
+    $reflection = $reflectedClass->getProperty($property);
+    $reflection->setAccessible(true);
+
+    return $reflection->getValue($object);
 }

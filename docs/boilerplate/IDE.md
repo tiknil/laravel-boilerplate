@@ -1,6 +1,18 @@
 [Torna all'indice](README.md)
 
+- [VSCode](#vscode)
+- [PHPStorm](#phpstorm)
+
+
 --- 
+
+# VS Code
+
+Nella cartella .vscode/ sono indicate alcune configurazioni di base e le estensioni consigliate per l'utilizzo di VSCode.
+
+Seguendo le raccomandazioni iniziali di VSCode si dovrebbe ottenere un workspace correttamente configurato.
+
+# Phpstorm
 
 ## Flag cartelle
 

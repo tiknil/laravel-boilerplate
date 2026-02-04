@@ -4,6 +4,6 @@ Usa il file [Readme.md](../README.md) principale per creare un nuovo progetto a 
 - [Backend di amministrazione](Backend.md)
 - [API](Api.md)
 - [Utilities](Utilities.md)
-- [Setup PHPStorm](PHPStorm.md)
+- [Setup IDE](IDe.md)
 
 
