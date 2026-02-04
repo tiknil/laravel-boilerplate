@@ -49,6 +49,8 @@ yarn build      # Build iniziale per generare il manifest di vite
 
 > Si suppone l'utilizzo di [skipper](https://github.com/tiknil/skipper) per l'avvio del progetto in locale
 
+Per l'utilizzo con Agenti IA, personalizza il file Agents.md con i dettagli e le specifiche del progetto specifico
+
 ## Documentazione
 
 - [Autenticazione web](docs/boilerplate/Auth.md)
