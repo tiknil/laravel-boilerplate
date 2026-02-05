@@ -42,7 +42,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         // Warning di bootstrap, vedi: https://github.com/twbs/bootstrap/issues/40962
-        silenceDeprecations: ['color-functions', 'mixed-decls', 'global-builtin'],
+        silenceDeprecations: ['color-functions', 'import', 'global-builtin', 'if-function'],
       },
     },
   },

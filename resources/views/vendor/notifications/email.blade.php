@@ -44,8 +44,7 @@ Attenzione ai tool di reformat automatici che aggiungono spazi / tab in automati
 @isset($actionText)
 <x-slot:subcopy>
 @lang(
-    "Se ci sono problemi nell'utilizzo del bottone \":actionText\", copia e incolla questo URL\n".
-    'nel tuo browser:',
+    "emails.action_subcopy",
     [
         'actionText' => $actionText,
     ]
