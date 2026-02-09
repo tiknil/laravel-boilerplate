@@ -1,0 +1,25 @@
+{
+    "recommendations": [
+        /* PHP base */
+        "devsense.phptools-vscode",
+
+        /* PHP Specific */
+        "MehediDracula.php-namespace-resolver",
+
+        /* Laravel specific */
+        "laravel.vscode-laravel",
+        "open-southeners.laravel-pint",
+        "cierra.livewire-vscode",
+        "shufo.vscode-blade-formatter",
+         
+        /* JS / TS / CSS */
+        "syler.sass-indented",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "rvest.vs-code-prettier-eslint",
+        "Vue.volar",
+
+        /* DB support */
+        "dbcode.dbcode",
+    ]
+}

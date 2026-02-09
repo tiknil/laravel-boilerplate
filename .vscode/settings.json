@@ -1,0 +1,42 @@
+{
+    "php.suggest.basic": false, // Evita suggerimenti di roba inutile per php
+    
+    /* Automatically format on save */
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+
+    /* Enable useful formatters */
+    "eslint.format.enable": true,
+    "laravel-pint.enable": true,
+    "typescript.format.enable": true,
+    "javascript.format.enable": true,
+    "bladeFormatter.format.enabled": true,
+
+    /* Blade formatter configuration */
+    "bladeFormatter.format.indentSize": 2,
+    "bladeFormatter.format.sortHtmlAttributes": "code-guide",
+    "bladeFormatter.format.wrapLineLength": 160,
+    "bladeFormatter.format.wrapAttributes": "force",
+    "bladeFormatter.format.wrapAttributesMinAttrs": 3,
+
+    /* formatters di default per le varie estensioni di file */
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[php]": {
+        "editor.defaultFormatter": "open-southeners.laravel-pint"
+    },
+    "[blade]": {
+        "editor.defaultFormatter": "shufo.vscode-blade-formatter"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
+    
+}

@@ -1,7 +1,6 @@
 # IDE / Editors
 /.fleet
 /.idea
-/.vscode
 
 # Npm/Yarn
 /node_modules
