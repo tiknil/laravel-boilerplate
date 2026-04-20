@@ -7,9 +7,7 @@
 
     /* Enable useful formatters */
     "eslint.format.enable": true,
-    "laravel-pint.enable": true,
-    "typescript.format.enable": true,
-    "javascript.format.enable": true,
+    "js/ts.format.enabled": true,
     "bladeFormatter.format.enabled": true,
 
     /* Blade formatter configuration */

@@ -29,7 +29,7 @@ Route::middleware('auth:web')->prefix('/backend')->group(function () {
     Route::get('/profile', [Backend\ProfileController::class, 'page'])->name('backend.profile');
     Route::post('/profile', [Backend\ProfileController::class, 'submit'])->name('backend.profile.submit');
 
-    Route::get('/users', \App\Livewire\UsersTable::class)->name('backend.users');
+    Route::livewire('/users', \App\Livewire\UsersTable::class)->name('backend.users');
     Route::get('/users/create', [Backend\UsersController::class, 'create'])->name('backend.users.create');
     Route::post('/users/create', [Backend\UsersController::class, 'store'])->name('backend.users.store');
     Route::get('/users/{id}/edit', [Backend\UsersController::class, 'edit'])->name('backend.users.edit');
