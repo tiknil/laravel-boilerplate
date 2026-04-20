@@ -11,8 +11,9 @@ L'obiettivo è tenere aggiornato questo repo, da tenere come reference e documen
 
 | Laravel                                | Reference                                                             |
 |----------------------------------------|-----------------------------------------------------------------------|
-| [12.x](https://laravel.com/docs/12.x/) | [master](https://github.com/tiknil/boilerplate/tree/master)           |
-| [11.x](https://laravel.com/docs/11.x/) | [tag v11.0](https://github.com/tiknil/boilerplate/tree/v11.0)         |
+| [13.x](https://laravel.com/docs/13.x/) | [master](https://github.com/tiknil/laravel-boilerplate/tree/master)   |
+| [12.x](https://laravel.com/docs/12.x/) | [tag v12.0](https://github.com/tiknil/laravel-boilerplate/tree/v12.0) |
+| [11.x](https://laravel.com/docs/11.x/) | [tag v11.0](https://github.com/tiknil/laravel-boilerplate/tree/v11.0) |
 | [10.x](https://laravel.com/docs/10.x/) | [tag v10.0](https://github.com/tiknil/laravel-boilerplate/tree/v10.0) |
 
 > Il master è riferito alla versione più recente supportata. Le versioni precedenti sono taggate al commit relativo
