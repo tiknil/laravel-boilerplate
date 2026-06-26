@@ -11,13 +11,26 @@ window.TOASTS.forEach((t) => showToast(t.type, t.message))
 /*
  * TOOLTIPS
  */
+/*
+ * TOOLTIPS
+ */
+function initTooltips() {
+  const els = document.querySelectorAll('[data-bs-tooltip]')
+  els.forEach((el) => {
+    const inst = bootstrap.Tooltip.getInstance(el)
+    if (inst) inst.dispose()
+    new bootstrap.Tooltip(el)
+  })
+}
 
-const tooltipTriggerList = [].slice.call(
-  document.querySelectorAll('[data-bs-tooltip]'),
-)
+document.addEventListener('DOMContentLoaded', () => {
+  initTooltips()
 
-const _tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
+  if (typeof window.Livewire !== 'undefined') {
+    window.Livewire.hook('morphed', () => {
+      initTooltips()
+    })
+  }
 })
 
 /*
@@ -39,10 +52,7 @@ if (sidebar) {
       let sibling = collapseParent.previousElementSibling
 
       while (sibling != null) {
-        if (
-          sibling.classList.contains('nav-title') &&
-          sibling.classList.contains('collapsed')
-        ) {
+        if (sibling.classList.contains('nav-title') && sibling.classList.contains('collapsed')) {
           ;(sibling as HTMLElement).click()
 
           break

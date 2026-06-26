@@ -1,9 +1,13 @@
 <tr wire:key="{{ $user->id }}">
 
-  <td>{{ $user->created_at->translatedFormat('d M y') }} <small
-      class="text-muted">{{ $user->created_at->translatedFormat('H:i') }}</small></td>
+  <td>{{ $user->created_at->translatedFormat('d M y') }} <small class="text-muted">{{ $user->created_at->translatedFormat('H:i') }}</small></td>
   <td>{{ $user->email }}</td>
-  <td>{{ $user->role->label() }}</td>
+  <td>
+    <span data-bs-tooltip data-bs-title="CIAOOO">
+      {{ $user->role->label() }}
+    </span>
+
+  </td>
   <td>
     <a class="btn btn-light btn-sm" href="{{ route('backend.users.edit', ['id' => $user->id]) }}">
       <i class="bi bi-pencil"></i> {{ __('backend.edit') }}
