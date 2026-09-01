@@ -31,3 +31,15 @@ test('users can not authenticate with invalid password', function () {
 
     $this->assertGuest();
 });
+
+test('two factor challenge page renders the recovery code toggle', function () {
+    $user = User::factory()->create();
+
+    $response = $this->withSession([
+        'login.id' => $user->getAuthIdentifier(),
+    ])->get('/two-factor-challenge');
+
+    $response->assertStatus(200);
+    $response->assertSee('toggle-recovery');
+    $response->assertSee('DOMContentLoaded');
+});
