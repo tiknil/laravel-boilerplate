@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify'
+
 export type Toast = {
   message: string
   type: 'error' | 'danger' | 'info' | 'warning' | 'success' | 'dark' | 'light'
@@ -24,7 +26,7 @@ export const showToast = (type: Toast['type'], message: Toast['message']) => {
   toastEl.classList.add('toast', `text-${textClass}`, `bg-${bootstrapClass}`)
 
   toastEl.innerHTML = `<div class="d-flex">
-        <div class="toast-body">${message}</div>
+        <div class="toast-body">${DOMPurify.sanitize(message)}</div>
         <button
           type="button"
           class="btn-close btn-close-${textClass} me-1 m-auto"
