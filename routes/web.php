@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\Backend;
 use App\Http\Middleware\TwoFactorAuthEnabled;
+use App\Livewire\AuditEventsTable;
 use App\Livewire\UsersTable;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +42,9 @@ Route::middleware(['auth:web', TwoFactorAuthEnabled::class])->prefix('/backend')
     Route::post('/users/create', [Backend\UsersController::class, 'store'])->name('backend.users.store');
     Route::get('/users/{id}/edit', [Backend\UsersController::class, 'edit'])->name('backend.users.edit');
     Route::patch('/users/{id}', [Backend\UsersController::class, 'update'])->name('backend.users.update');
+
+    Route::middleware('can:admin')->group(function () {
+        Route::get('/audit-events', AuditEventsTable::class)->name('backend.audit-events');
+    });
+
 });

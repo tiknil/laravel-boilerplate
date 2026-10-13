@@ -30,4 +30,5 @@ return [
     'edit_user' => 'Edit user :name',
 
     'all_roles' => 'All roles',
+    'audit_events' => 'Audit events',
 ];

@@ -8,6 +8,9 @@ use App\Http\Resources\UserResource;
 use App\Http\Responses\Api\ApiError;
 use App\Http\Responses\Api\ErrorResponse;
 use App\Models\User;
+use Illuminate\Auth\Events\Failed;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -26,10 +29,14 @@ class TokensController extends ApiController
         $user = User::where('email', $params['email'])->first();
 
         if (empty($user)) {
+            event(new Failed('sancrum', $user, $params));
+
             return ErrorResponse::json(401, ApiError::InvalidCredentials);
         }
 
         if (!Hash::check($params['password'], $user->password)) {
+            event(new Failed('sancrum', $user, $params));
+
             return ErrorResponse::json(401, ApiError::InvalidCredentials);
         }
 
@@ -38,6 +45,8 @@ class TokensController extends ApiController
         $this->revokeDeviceTokens($user, $deviceId);
 
         $auth = AuthTokens::forUser($user, $deviceId);
+
+        event(new Login('sanctum', $user, false));
 
         return (new UserResource($user))->additional([
             'meta' => $auth->toMetaArray(),
@@ -60,6 +69,9 @@ class TokensController extends ApiController
 
     public function logout(Request $request): Response
     {
+        $user = $request->user();
+        event(new Logout('sanctum', $user));
+
         $this->revokeRequestToken($request);
 
         return response()->noContent();

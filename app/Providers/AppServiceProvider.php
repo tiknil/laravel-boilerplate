@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Enums\UserRole;
+use App\Models\User;
+use App\Observers\UserObserver;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
@@ -35,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         URL::forceScheme('https');
+        User::observe(UserObserver::class);
 
         Blade::anonymousComponentNamespace('backend', 'backend');
         Blade::anonymousComponentNamespace('frontend', 'frontend');

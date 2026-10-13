@@ -11,4 +11,6 @@ Artisan::command('inspire', function () {
 
 Schedule::command('backup:clean')->daily()->at('02:00');
 Schedule::command('backup:run')->daily()->at('02:30');
+
+Schedule::command('audit:clear-old-logs')->monthlyOn(1, '01:00');
 */

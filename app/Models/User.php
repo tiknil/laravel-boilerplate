@@ -15,6 +15,7 @@ use Illuminate\Support\Carbon;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * App\Models\User
@@ -45,13 +46,21 @@ use Laravel\Sanctum\PersonalAccessToken;
  *
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements Auditable
 {
-    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, Notifiable, \OwenIt\Auditing\Auditable, TwoFactorAuthenticatable;
 
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    protected $auditExclude = [
+        'password',
+        'remember_token',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'fcm_token',
     ];
 
     protected $casts = [
