@@ -3,7 +3,7 @@
   <td>{{ $user->created_at->translatedFormat('d M y') }} <small class="text-muted">{{ $user->created_at->translatedFormat('H:i') }}</small></td>
   <td>{{ $user->email }}</td>
   <td>
-    <span data-bs-tooltip data-bs-title="CIAOOO">
+    <span>
       {{ $user->role->label() }}
     </span>
 
