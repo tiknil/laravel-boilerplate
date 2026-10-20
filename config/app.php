@@ -28,6 +28,8 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'staging' => env('APP_STAGING', false), // Serve per dstinguere ambiente di staging da prod, dal punto di vista di laravel sono entrambi "production"
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode

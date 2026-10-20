@@ -7,11 +7,9 @@
 FROM php:8.4-fpm
 
 LABEL maintainer="Tiknil <info@tiknil.com>"
-
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
   curl \
-  libmemcached-dev \
   libzip-dev \
   libz-dev \
   libpq-dev \
@@ -24,8 +22,12 @@ RUN apt-get update \
   git \
   cron \
   zip \
-  unzip \
-  && rm -rf /var/lib/apt/lists/*
+  unzip
+
+# Dipendenze che servono solo per fare i backup, non conviene installarle se non si sta testando quello
+# RUN apt-get install -y --no-install-recommends default-mysql-client rclone 
+
+RUN rm -rf /var/lib/apt/lists/*
 
 ##################
 # PHP extensions #

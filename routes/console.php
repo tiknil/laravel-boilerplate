@@ -1,16 +1,11 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
 
 /*
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote')->hourly();
-
-Schedule::command('backup:clean')->daily()->at('02:00');
-Schedule::command('backup:run')->daily()->at('02:30');
+if (config('app.env') === 'production' && !config('app.staging')) {
+    Schedule::command('backup')->dailyAt('02:00')->withoutOverlapping();
+}
+*/
 
 Schedule::command('audit:clear-old-logs')->monthlyOn(1, '01:00');
-*/

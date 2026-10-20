@@ -20,6 +20,7 @@
         "league/flysystem-aws-s3-v3": "^3.13",
         "livewire/livewire": "^4.0",
         "owen-it/laravel-auditing": "^14.0",
+        "tiknil/backups": "^0.4.0",
         "tiknil/bs-blade-forms": "^0.8",
         "tiknil/wire-table": "^2.0"
     },
