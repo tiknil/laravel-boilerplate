@@ -3,19 +3,23 @@
 use App\Http\Responses\Api\ApiError;
 use App\Http\Responses\Api\ErrorResponse;
 use App\Providers\AppServiceProvider;
+use Bugsnag\BugsnagLaravel\BugsnagServiceProvider;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\Exceptions\MissingAbilityException;
+use Laravel\Sanctum\Http\Middleware\CheckAbilities;
+use Laravel\Sanctum\Http\Middleware\CheckForAnyAbility;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withProviders([
-        \Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
+        BugsnagServiceProvider::class,
     ])
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -31,16 +35,29 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->throttleApi();
 
         $middleware->alias([
-            'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
-            'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
+            'abilities' => CheckAbilities::class,
+            'ability' => CheckForAnyAbility::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
+
+        // Altrimenti non vengono gestite da Telescope
+        $exceptions->stopIgnoring(ValidationException::class);
 
         /*
          * Alcune eccezioni vengono generate direttamente da Laravel.
          * In caso di richieste API, usiamo la risposta di errore standard
          */
+
+        // Errore 422
+        $exceptions->render(function (ValidationException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return ErrorResponse::invalidRequest(
+                    'The request either misses some requested parameters or contains invalid ones',
+                    $e->errors()
+                );
+            }
+        });
 
         // Errore 404
         $exceptions->render(function (NotFoundHttpException $e, Request $request) {
